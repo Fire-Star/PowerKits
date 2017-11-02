@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模块选择页面</title>
+    <!-- 引入 BootStrap 全家桶 -->
+    <script src="../../../res/js/jquery-3.2.1.min.js"></script>
+    <script src="../../../res/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../res/css/bootstrap.min.css"/>
+
+    <!-- 引入Vue.js -->
+    <script src="../../../res/js/vue.min.js"></script>
+    <style>
+        html,body,.app{
+            width: 100%;height: 100%;padding: 0px;margin: 0px;background-color: #FBF8F7;text-align: center;font: 0 "宋体";
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select:none;
+            -khtml-user-select:none;
+            -webkit-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+        }
+        .app:after{
+            content: "";display: inline-block;height: 80%;vertical-align: middle;
+        }
+        .envelope-plug{
+            display: inline-block;vertical-align: middle;margin-top: 60px;width: 888px;height: 416px;position: relative;
+            transform: perspective(1200px) rotateY(0deg);
+            -webkit-transform:perspective(1200px) rotateY(0deg);	/* Safari 和 Chrome */
+            -moz-transform:perspective(1200px) rotateY(0deg);	/* Firefox */
+        }
+        .envelope{
+            width: 100%;height: 100%;display: inline-block;box-shadow:inset 0 0 8px 8px rgba(255,255,240,0.2);background-image: url(../../../res/img/envelope-bg.png);
+            box-shadow: 0 4px 8px rgba(0,0,0,.3);position: relative;
+        }
+        .envelope-pack{
+            position: absolute;display: inline-block;width: 100%;height: 52%;background-image: url(../../../res/img/envelope-bg.png);z-index: 100;box-shadow: 0 3px 8px rgba(0,0,0,.2);
+            border-bottom-left-radius: 82px;border-bottom-right-radius: 82px;
+        }
+        .love-heart{
+            display: inline-block;position: relative;margin: 0 auto;width: 100px;height: 100px;z-index: 200;bottom: -88%;
+        }
+        .love-heart:hover{
+            cursor: pointer;
+        }
+        .love-heart span{
+            display: inline-block;background-color: #e4528f;
+        }
+        .heart{
+            border-radius: 100%;width: 100%;height: 100%;position: absolute;
+        }
+        .left-heart{
+            right: 50%;
+        }
+        .right-heart{
+            bottom: 50%;
+        }
+        .foot-heart{
+            position: relative;width: 80%;height: 80%;text-align: left;
+            transform:rotate(45deg);
+            -ms-transform:rotate(45deg); 	/* IE 9 */
+            -moz-transform:rotate(45deg); 	/* Firefox */
+            -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+            -o-transform:rotate(45deg); 	/* Opera */
+        }
+        .text{
+            font: 18px "宋体";
+        }
+        .show-toggle-text{
+            font: 20px "宋体";position: absolute;display: inline-block;bottom: 80px;right: 80px;color: #6f6861;
+        }
+        .show-toggle-text:hover{
+            cursor: pointer;color: black;
+        }
+        .envelope-show-rotateX{
+            transform: perspective(1200px) rotateY(180deg);
+            -webkit-transform:perspective(1200px)  rotateY(180deg);	/* Safari 和 Chrome */
+            -moz-transform:perspective(1200px)  rotateY(180deg);	/* Firefox */
+            -webkit-transition: transform 1s ease 0s;
+            -moz-transition: transform 1s ease 0s;
+            -ms-transition: transform 1s ease 0s;
+            -o-transition: transform 1s ease 0s;
+            transition: transform 1s ease 0s;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- 信封 -->
+        <div class="envelope-plug">
+            <div class="envelope-pack">
+                <!-- 爱心 -->
+                <div class="love-heart">
+                    <span class="foot-heart">
+                        <span class="heart circle-heart left-heart"></span>
+                        <span class="heart circle-heart right-heart"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="envelope">
+                <span class="text show-toggle-text" @click="addTransform">查看信封正面</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var data = {
+    };
+    var vm = new Vue({
+        el:'.app',
+        data:data,
+        methods:{
+            addTransform:function () {
+                $(".envelope-plug").removeClass("envelope-show-rotateX").addClass("envelope-show-rotateX");
+            }
+        }
+    });
+</script>
+</html>
