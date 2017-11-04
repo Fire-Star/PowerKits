@@ -12,7 +12,7 @@
     <script src="../../../res/js/vue.min.js"></script>
     <style>
         html,body,.app{
-            width: 100%;height: 100%;padding: 0px;margin: 0px;background-color: #FBF8F7;text-align: center;font: 0 "宋体";
+            width: 100%;height: 100%;padding: 0px;margin: 0px;background-color: #eae4e2;text-align: center;font: 0 "宋体";
             moz-user-select: -moz-none;
             -moz-user-select: none;
             -o-user-select:none;
@@ -20,23 +20,64 @@
             -webkit-user-select:none;
             -ms-user-select:none;
             user-select:none;
+            overflow: visible;
         }
         .app:after{
             content: "";display: inline-block;height: 80%;vertical-align: middle;
         }
         .envelope-plug{
-            display: inline-block;vertical-align: middle;margin-top: 60px;width: 888px;height: 416px;position: relative;
-            transform: perspective(1200px) rotateY(0deg);
-            -webkit-transform:perspective(1200px) rotateY(0deg);	/* Safari 和 Chrome */
-            -moz-transform:perspective(1200px) rotateY(0deg);	/* Firefox */
+            display: inline-block;vertical-align: middle;bottom: -20px;width: 888px;height: 416px;position: relative;text-align: left;
+
+            transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s;
+            -webkit-transition: transform 0.6s ease 0s,margin-top 0.6s ease 0s,bottom 0.6s ease 0s;
+            -moz-transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s,bottom 0.6s ease 0s;
+            -ms-transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s,bottom 0.6s ease 0s;
+            -o-transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s,bottom 0.6s ease 0s;
+        }
+        .envelope-plug-open{
+            bottom: -250px;
+        }
+        .envelope-front , .envelope-back{
+            display: inline-block;width: 100%;height: 100%;position: absolute;text-align: center;
+        }
+        .envelope-back{
+            z-index: 10;
+        }
+        .envelope-back-addTopBorder{
+            border-top: 1px solid #e4c3a2;
+        }
+        .envelope-front{
+            z-index: 5;
         }
         .envelope{
             width: 100%;height: 100%;display: inline-block;box-shadow:inset 0 0 8px 8px rgba(255,255,240,0.2);background-image: url(../../../res/img/envelope-bg.png);
             box-shadow: 0 4px 8px rgba(0,0,0,.3);position: relative;
         }
+        .envelope-back-x{
+            height: 60%;bottom: -40%;z-index: 20;
+        }
         .envelope-pack{
             position: absolute;display: inline-block;width: 100%;height: 52%;background-image: url(../../../res/img/envelope-bg.png);z-index: 100;box-shadow: 0 3px 8px rgba(0,0,0,.2);
             border-bottom-left-radius: 82px;border-bottom-right-radius: 82px;
+        }
+        .envelope-pack-getAnimation{
+            transform-origin:0% 0;
+            -ms-transform-origin: 0% 0;
+            -o-transform-origin: 0% 0;
+            -moz-transform-origin: 0% 0;
+            -webkit-transform-origin: 0% 0;
+
+            transform: perspective(2000px) rotateX(0deg);
+            -webkit-transform:perspective(2000px)  rotateX(0deg);	/* Safari 和 Chrome */
+            -moz-transform:perspective(2000px)  rotateX(0deg);	/* Firefox */
+            -o-transform: perspective(2000px)  rotateX(0deg);
+            -ms-transform: perspective(2000px)  rotateX(0deg);
+
+            transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s;
+            -webkit-transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s;
+            -moz-transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s;
+            -ms-transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s;
+            -o-transition: margin-top 0.6s ease 0s, transform 0.6s ease 0s;
         }
         .love-heart{
             display: inline-block;position: relative;margin: 0 auto;width: 100px;height: 100px;z-index: 200;bottom: -88%;
@@ -68,20 +109,119 @@
             font: 18px "宋体";
         }
         .show-toggle-text{
-            font: 20px "宋体";position: absolute;display: inline-block;bottom: 80px;right: 80px;color: #6f6861;
+            font: 20px "宋体";position: absolute;display: inline-block;bottom: 33px;right: 68px;color: #DEA75E;
         }
         .show-toggle-text:hover{
-            cursor: pointer;color: black;
+            cursor: pointer;color: #daa35a;
         }
-        .envelope-show-rotateX{
-            transform: perspective(1200px) rotateY(180deg);
-            -webkit-transform:perspective(1200px)  rotateY(180deg);	/* Safari 和 Chrome */
-            -moz-transform:perspective(1200px)  rotateY(180deg);	/* Firefox */
-            -webkit-transition: transform 1s ease 0s;
-            -moz-transition: transform 1s ease 0s;
-            -ms-transition: transform 1s ease 0s;
-            -o-transition: transform 1s ease 0s;
-            transition: transform 1s ease 0s;
+        .envelope-show-rotateX-before-show{
+            transform: perspective(2000px) rotateY(360deg) !important;
+            -webkit-transform:perspective(2000px) rotateY(360deg) !important;	/* Safari 和 Chrome */
+            -moz-transform:perspective(2000px) rotateY(360deg) !important;	/* Firefox */
+            transition: transform 0.6s ease 0s;
+            -webkit-transition: transform 0.6s ease 0s;
+            -moz-transition: transform 0.6s ease 0s;
+            -ms-transition: transform 0.6s ease 0s;
+            -o-transition: transform 0.6s ease 0s;
+        }
+        .envelope-show-rotateX-before{
+            transform: perspective(2000px) rotateY(0deg);
+            -webkit-transform:perspective(2000px) rotateY(0deg);	/* Safari 和 Chrome */
+            -moz-transform:perspective(2000px) rotateY(0deg);	/* Firefox */
+            -webkit-transition: transform 0.6s ease 0s;
+            -moz-transition: transform 0.6s ease 0s;
+            -ms-transition: transform 0.6s ease 0s;
+            -o-transition: transform 0.6s ease 0s;
+            transition: transform 0.6s ease 0s;
+            backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .envelope-show-rotateX-after{
+            transform: perspective(2000px) rotateY(180deg);
+            -webkit-transform:perspective(2000px)  rotateY(180deg);	/* Safari 和 Chrome */
+            -moz-transform:perspective(2000px)  rotateY(180deg);	/* Firefox */
+            transition: transform 0.6s ease 0s;
+            -webkit-transition: transform 0.6s ease 0s;
+            -moz-transition: transform 0.6s ease 0s;
+            -ms-transition: transform 0.6s ease 0s;
+            -o-transition: transform 0.6s ease 0s;
+        }
+        .envelop-front-stamp{
+            display: inline-block;width: 23%;height: 32%;position: absolute;right: 30px;top: 30px;
+        }
+        .stamp-img:hover{
+            cursor: pointer;
+        }
+        .envelope-title{
+            display: inline-block;position: absolute;left: 56px;top: 46px;color: #ff58b2;
+        }
+        .envelope-footer{
+            display: inline-block;position: absolute;color: #ff58b2;right: 82px;bottom: 70px;
+        }
+        .title-highlight{
+            font: 42px "宋体";
+        }
+        .title-name{
+            color: #6f6861;margin-left: 10px;font: 25px "宋体";
+        }
+        .envelope-front-message{
+            display: inline-block;position: absolute;width: 100%;height: 33%;left: 0;top: 40%;
+        }
+        .text-front-message{
+            font: 85px "宋体";color: #ff58b2;
+        }
+        .modal-content-part{
+            margin: 20px;
+        }
+        .verify-input{
+            margin-bottom: 15px;height: 43px;padding-left: 20px;font: 19px "宋体";
+        }
+        .verify-btn{
+            height: 43px;font: 19px "宋体";
+        }
+        .envelope-pack-up{
+            border-top: 1px solid #f3eeea;
+            transform-origin:0% 0;
+            -ms-transform-origin: 0% 0;
+            -o-transform-origin: 0% 0;
+            -moz-transform-origin: 0% 0;
+            -webkit-transform-origin: 0% 0;
+
+            transform: perspective(2000px) rotateX(180deg);
+            -webkit-transform:perspective(2000px)  rotateX(180deg);	/* Safari 和 Chrome */
+            -moz-transform:perspective(2000px)  rotateX(180deg);	/* Firefox */
+            transition: transform 0.6s ease 0s;
+            -webkit-transition: transform 0.6s ease 0s;
+            -moz-transition: transform 0.6s ease 0s;
+            -ms-transition: transform 0.6s ease 0s;
+            -o-transition: transform 0.6s ease 0s;
+        }
+        .envelope-message{
+            display: inline-block;width: 96%;height: 39%;position: absolute;left: 2%;bottom: 60%;background: url("../../../res/img/ms-bg.png");padding: 20px;z-index: 19;
+            transition: height 0.8s ease 0s;
+            -webkit-transition: height 0.8s ease 0s;
+            -moz-transition: height 0.8s ease 0s;
+            -ms-transition: height 0.8s ease 0s;
+            -o-transition: height 0.8s ease 0s;
+        }
+        .envelope-message-open{
+            z-index: 200;
+        }
+        .envelope-back-bottom-open{
+            z-index: 300;
+        }
+        .envelope-heart-open{
+            z-index: 50;
+        }
+        .zhezhao{
+            width: 80%;height: 90%;display: inline-block;position: absolute;left: 10%;bottom: 0px;z-index: 300;background-image: url(../../../res/img/envelope-bg.png);display: none;
+        }
+        .zhezhao-open{
+            display: inline-block;
+        }
+        .envelope-message-show:hover{
+            height: 520px;top: auto;z-index: 220;
         }
     </style>
 </head>
@@ -89,30 +229,185 @@
     <div class="app">
         <!-- 信封 -->
         <div class="envelope-plug">
-            <div class="envelope-pack">
-                <!-- 爱心 -->
-                <div class="love-heart">
-                    <span class="foot-heart">
-                        <span class="heart circle-heart left-heart"></span>
-                        <span class="heart circle-heart right-heart"></span>
-                    </span>
+            <div class="envelope-back envelope-show-rotateX-before">
+                <div class="envelope-pack envelope-pack-getAnimation">
+                    <div class="zhezhao"></div>
+                    <!-- 爱心 -->
+                    <div class="love-heart" @click="verifyPerson">
+                        <span class="foot-heart">
+                            <span class="heart circle-heart left-heart"></span>
+                            <span class="heart circle-heart right-heart"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="envelope-message envelope-message-show">
+
+                </div>
+                <div class="envelope envelope-back-x">
+                    <span class="text show-toggle-text" @click="addTransform">查看信封正面</span>
                 </div>
             </div>
-            <div class="envelope">
-                <span class="text show-toggle-text" @click="addTransform">查看信封正面</span>
+            <div class="envelope-front envelope-show-rotateX-after">
+                <div class="envelope">
+                    <div class="envelope-title">
+                        <span class="text title-highlight">T</span>
+                        <span class="text" style="font: 25px '宋体';">O:</span>
+                        <span class="text title-name">杨舒粤(Joy)</span>
+                    </div>
+                    <div class="envelop-front-stamp">
+                        <img class="stamp-img" style="width: 100%;" title="love" draggable="false" src="../../../res/img/stamp03.gif">
+                    </div>
+                    <div class="envelope-front-message text-front-message">
+                        Happy Birthday
+                    </div>
+                    <div class="envelope-footer">
+                        <span class="text title-highlight">F</span>
+                        <span class="text" style="font: 25px '宋体';">rom:</span>
+                        <span class="text title-name">胡艺宝(MoonFollow)</span>
+                    </div>
+                    <span class="text show-toggle-text" @click="addTransform">查看信封背面</span>
+                </div>
             </div>
         </div>
+        <!-- Button trigger modal -->
+        <button type="button" id="btn-modal" class="btn btn-primary btn-lg" style="display: none;" data-toggle="modal" data-target=".modal">
+            弹出模态框
+        </button>
+        <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">收信提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-content-part">
+                            <input class="form-control verify-input" placeholder="输入你的祝福码">
+                            <button class="form-control btn btn-primary verify-btn">收信</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
 </body>
 <script>
+
     var data = {
+        verifySuccess:true,
+        addTransformIsExecute:false,
+        verifyPersonIsExecute:false
     };
     var vm = new Vue({
         el:'.app',
         data:data,
         methods:{
+            notRepeatClick: function (DEBOUNCE_TIME,func) { 
+                window.clearTimeout(this.tId);
+                this.tId = window.setTimeout(function () {
+                    // 真正的逻辑
+                    func();
+                }, DEBOUNCE_TIME)
+            },
+            addTransfromFunction:function () {
+                if($(".envelope-pack").hasClass("envelope-pack-getAnimation")){
+                    $(".envelope-pack").removeClass("envelope-pack-getAnimation");
+                }else{
+                    setTimeout(function () {
+                        $(".envelope-pack").addClass("envelope-pack-getAnimation");
+                    },600);
+                }
+                $(".envelope-back").toggleClass("envelope-show-rotateX-after");
+                $(".envelope-front").toggleClass("envelope-show-rotateX-before-show");
+            },
             addTransform:function () {
-                $(".envelope-plug").removeClass("envelope-show-rotateX").addClass("envelope-show-rotateX");
+                if(!vm.verifyPersonIsExecute&&!vm.addTransformIsExecute){
+                    vm.addTransformIsExecute = true;
+                }else{
+                    if(vm.verifyPersonIsExecute){
+                        console.log("点 addTransformIsExecute 的时候，verifyPersonIsExecute 还在运行！");
+                    }else{
+                        console.log("多点了 addTransform");
+                    }
+                    return;
+                }
+                if(!(vm.isContinueShow())){
+                    return;
+                }
+                var isExecuteEnvelopePack = false;
+                if($(".envelope-pack").hasClass("envelope-pack-up")){
+                    isExecuteEnvelopePack = true;
+                    vm.verifyPerson();
+                    setTimeout(vm.addTransfromFunction,600);
+                }
+                if(!isExecuteEnvelopePack){
+                    vm.addTransfromFunction();
+                }
+                setTimeout(function () {
+                    vm.addTransformIsExecute = false;
+                },610);
+            },
+            verifyPerson: function(){
+                if(!vm.verifyPersonIsExecute){
+                    vm.verifyPersonIsExecute = true;
+                }else{
+                    console.log("多点了 verifyPerson");
+                    return;
+                }
+                if(!(vm.isContinueShow())){
+                    return;
+                }
+                $(".envelope-plug").toggleClass("envelope-plug-open");
+                $(".envelope-pack").toggleClass("envelope-pack-up");
+                if($(".envelope-back").hasClass("envelope-back-addTopBorder")){
+                   $(".envelope-back").removeClass("envelope-back-addTopBorder");
+                }else{
+                    setTimeout(function () {
+                        $(".envelope-back").addClass("envelope-back-addTopBorder");
+                    },200);
+                }
+                if($(".envelope-message").hasClass("envelope-message-open")){
+                    $(".envelope-message").removeClass("envelope-message-open");
+                }else{
+                    setTimeout(function () {
+                        $(".envelope-message").addClass("envelope-message-open");
+                    },600);
+                }
+
+                if($(".envelope-back-x").hasClass("envelope-back-bottom-open")){
+                    $(".envelope-back-x").removeClass("envelope-back-bottom-open");
+                }else{
+                    setTimeout(function () {
+                        $(".envelope-back-x").addClass("envelope-back-bottom-open");
+                    },600);
+                }
+                if($(".love-heart").hasClass("envelope-heart-open")){
+                    $(".love-heart").removeClass("envelope-heart-open");
+                }else{
+                    $(".love-heart").addClass("envelope-heart-open");
+                }
+                if($(".zhezhao").hasClass("zhezhao-open")){
+                    setTimeout(function () {
+                        $(".zhezhao").removeClass("zhezhao-open");
+                    },150)
+                }else{
+                    setTimeout(function () {
+                        $(".zhezhao").addClass("zhezhao-open");
+                    },100);
+                }
+                setTimeout(function () {
+                    vm.verifyPersonIsExecute = false;
+                },1000);
+            },
+            isContinueShow:function () {
+                if(!vm.verifySuccess){
+                    $("#btn-modal").click();
+                    return false;
+                }
+                return true;
             }
         }
     });
