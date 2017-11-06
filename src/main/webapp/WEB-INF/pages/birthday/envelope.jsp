@@ -346,7 +346,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-content-part">
-                        <input class="form-control verify-input getCheckForm" tagName="祝福码" v-model="wishCode" placeholder="输入你的祝福码">
+                        <input class="form-control verify-input getCheckForm" tagName="祝福码" @click="receiveMessage()" v-model="wishCode" placeholder="输入你的祝福码">
                         <button class="form-control btn btn-primary verify-btn" @click="receiveMessage()">收信</button>
                     </div>
                 </div>
