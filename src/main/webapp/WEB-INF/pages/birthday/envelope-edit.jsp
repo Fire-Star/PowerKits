@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>模块选择页面</title>
+    <title>信件编辑</title>
     <!-- 引入 BootStrap 全家桶 -->
     <script src="<c:url value="/"/>res/js/jquery-3.2.1.min.js"></script>
     <script src="<c:url value="/"/>res/js/bootstrap.min.js"></script>
@@ -301,6 +301,18 @@
         .envelope-send-button{
             width: 100%;height: 38px;outline: none !important;
         }
+        .email{
+            position: absolute;display: inline-block;width: 18%;left: 41%;margin-top: 40px;
+        }
+        .part{
+            font: 18px "宋体";
+        }
+        .part-inline{
+            font: 18px/24px "宋体";display: inline-block;
+        }
+        .clearSpace-part{
+            font: 0px/0px "宋体";display: inline-block;;
+        }
     </style>
 </head>
 <body>
@@ -309,6 +321,14 @@
     <div class="envelope-plug">
         <div class="envelope-back envelope-show-rotateX-before">
             <div class="envelope-pack envelope-pack-getAnimation">
+                <div class="email clearSpace-part">
+                    <div class="part">
+                        <input type="text" style="margin-bottom: 6px" class="form-control showInput getCheckForm getCheckEmail" v-model="receiveManEmail" tagName="收件人的邮件地址" placeholder="收件人的邮件地址">
+                    </div>
+                    <div class="part">
+                        <input type="text" class="form-control showInput getCheckForm getCheckEmail" v-model="sendManEmail" tagName="发件人的邮件地址" placeholder="发件人的邮件地址">
+                    </div>
+                </div>
                 <div class="zhezhao"></div>
                 <!-- 爱心 -->
                 <div class="love-heart" @click="verifyPerson">
@@ -398,7 +418,9 @@
         sendMan:"", //寄信人
         dearMan:"", //致 谁谁谁
         message:"", //信 的内容
-        stamp:"" //邮票
+        stamp:"", //邮票
+        receiveManEmail:"", //收件人的邮件地址
+        sendManEmail:"" //发件人的邮件地址
     };
     var vm = new Vue({
         el:'.app',
@@ -514,6 +536,10 @@
                 if(!isGoCheck){
                     return;
                 }
+                window.checkEmail();
+                if(!isGoCheck){
+                    return;
+                }
                 $.post("<c:url value="/"/>bestwish/envelope/send",
                     {
                         wishCode:vm.wishCode,
@@ -521,7 +547,9 @@
                         envelopeAim:vm.envelopeAim,
                         sendMan:vm.sendMan,
                         dearMan:vm.dearMan,
-                        message:vm.message
+                        message:vm.message,
+                        receiveManEmail:vm.receiveManEmail,
+                        sendManEmail:vm.sendManEmail
                     },
                     function (data, status) {
                         if (status) {
@@ -553,7 +581,6 @@
             if(isGoCheck){
                 var itemData = $.trim($(this).val());
                 var attrName = $(this).attr("tagName");
-                console.log(attrName+"--->"+itemData);
                 if(!itemData){
                     vm.modalMessage = attrName+" 不能为空！！！";
                     $(this).parent().addClass("has-error");
@@ -565,5 +592,26 @@
             }
         });
     };
+
+    /**
+     * 检查邮箱
+     */
+    function checkEmail() {
+        var regex = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+        $('.getCheckEmail').each(function () {
+            if(isGoCheck){
+                var itemData = $.trim($(this).val());
+                var attrName = $(this).attr("tagName");
+                if(!regex.test(itemData)){
+                    vm.modalMessage = attrName+" 不是一个正确的邮箱地址！！！";
+                    $(this).parent().addClass("has-error");
+                    $('#btn-modal').click();
+                    isGoCheck = false;
+                }else{
+                    $(this).parent().removeClass("has-error");
+                }
+            }
+        });
+    }
 </script>
 </html>

@@ -246,6 +246,13 @@
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.3</version>
     </dependency>
+    <!-- 加入 Mail 包 -->
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.6.0</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>PowerKits</finalName>

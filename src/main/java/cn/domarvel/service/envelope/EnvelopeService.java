@@ -11,4 +11,8 @@ public interface EnvelopeService {
     public void sendEnvelope(EnvelopeCustom envelopeCustom) throws Exception;
 
     public EnvelopeCustom findEnvelopeByWishCode(String wishCode) throws Exception;
+
+    public String findSendManEmailByWishCode(String wishCode) throws Exception;
+
+    public String findReceiveManEmailByWishCode(String wishCode) throws Exception;
 }

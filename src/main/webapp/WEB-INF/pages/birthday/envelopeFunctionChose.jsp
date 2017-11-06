@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>模块选择页面</title>
+    <title>Envelope功能选择</title>
     <!-- 引入 BootStrap 全家桶 -->
     <script src="<c:url value="/"/>res/js/jquery-3.2.1.min.js"></script>
     <script src="<c:url value="/"/>res/js/bootstrap.min.js"></script>

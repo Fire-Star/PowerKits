@@ -137,5 +137,24 @@
         el:'.app',
         data:data
     });
+
+    $.get("hasEqSuccessFile",function (data, status) {
+        if(status == "success"){
+            var _data = eval(data);
+            if(!_data){
+                vm.modalStatus = '发生未知错误，请联系管理员！';
+                $('#modalButton').click();
+            }else if(_data.hasInsertEqSuccessFile){
+                if(_data.hasInsertEqSuccessFile=="1"){
+                    vm.showDownloadSuccessEqFile = true;
+                }else{
+                    vm.showDownloadSuccessEqFile = false;
+                }
+            }else if(_data.errorType){
+                vm.modalStatus = _data.errorType;
+                $('#modalButton').click();
+            }
+        }
+    })
 </script>
 </html>

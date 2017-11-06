@@ -28,10 +28,26 @@ CREATE TABLE `envelope` (
   `dearMan` char(20) NOT NULL COMMENT '致 谁谁谁',
   `message` text NOT NULL COMMENT '信的内容',
   `stamp` char(100) DEFAULT NULL COMMENT '邮票',
+  `sendManEmail` varchar(100) DEFAULT NULL COMMENT '发送者的邮件地址',
+  `receiveManEmail` varchar(100) DEFAULT NULL COMMENT '收件人的邮件地址',
   PRIMARY KEY (`wishCode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `envelope` */
+
+/*Table structure for table `envelopereadlog` */
+
+DROP TABLE IF EXISTS `envelopereadlog`;
+
+CREATE TABLE `envelopereadlog` (
+  `ID` char(36) NOT NULL,
+  `IP` char(30) NOT NULL COMMENT '远程IP地址',
+  `readCount` int(11) NOT NULL COMMENT '远程IP对信件的阅读次数',
+  `wishCode` char(50) NOT NULL COMMENT '祝福码',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `envelopereadlog` */
 
 /*Table structure for table `hotcritical` */
 

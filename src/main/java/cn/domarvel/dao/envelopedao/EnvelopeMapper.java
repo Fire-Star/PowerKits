@@ -12,4 +12,8 @@ public interface EnvelopeMapper {
     public Integer countEnvelopeByWishCode(String wishCode);
 
     public EnvelopeCustom findEnvelopeByWishCode(String wishCode);
+
+    public String findSendManEmailByWishCode(String wishCode);
+
+    public String findReceiveManEmailByWishCode(String wishCode);
 }
