@@ -55,7 +55,7 @@ public class EnvelopeServiceImpl implements EnvelopeService{
         wishCode = BeanPropertyValidateUtils.validateStrIsEmpty(wishCode,"祝福码");
         EnvelopeCustom envelopeCustom = envelopeMapper.findEnvelopeByWishCode(wishCode);
         if(envelopeCustom == null){
-            throw new SimpleException("你输入的祝福码不存在！");
+            throw new SimpleException("Sorry 该唯一祝福码下没有你要找的信！");
         }
         return envelopeCustom;
     }

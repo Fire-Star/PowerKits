@@ -2,6 +2,8 @@ package cn.domarvel.web.controller.envelopeController;
 
 import cn.domarvel.exception.SimpleException;
 import cn.domarvel.pocustom.EnvelopeCustom;
+import cn.domarvel.pocustom.EnvelopeReadLogCustom;
+import cn.domarvel.service.envelope.EnvelopeReadLogService;
 import cn.domarvel.service.envelope.EnvelopeService;
 import cn.domarvel.utils.BeanPropertyValidateUtils;
 import cn.domarvel.utils.SimpleBeanUtils;
@@ -25,6 +27,9 @@ public class EnvelopeController {
 
     @Autowired
     private EnvelopeService envelopeService;
+
+    @Autowired
+    private EnvelopeReadLogService envelopeReadLogService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -56,6 +61,14 @@ public class EnvelopeController {
         EnvelopeCustom envelopeCustom = SimpleBeanUtils.setMapPropertyToBean(EnvelopeCustom.class,request.getParameterMap());
         String wishCode = envelopeCustom.getWishCode();
         EnvelopeCustom result = envelopeService.findEnvelopeByWishCode(wishCode);
+        String remoteIP = request.getRemoteAddr();//获取远程IP
+
+        //维护阅读访问记录
+        EnvelopeReadLogCustom envelopeReadLogCustom = new EnvelopeReadLogCustom();
+        envelopeReadLogCustom.setIP(remoteIP);
+        envelopeReadLogCustom.setWishCode(wishCode);
+        envelopeReadLogService.saveEnvelopeReadLog(envelopeReadLogCustom);
+
         SimpleException.sendMessage(response,objectMapper,result);
     }
 }

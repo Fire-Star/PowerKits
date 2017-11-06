@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.domarvel.dao.envelopedao.EnvelopeReadLogMapper">
+    <insert id="saveEnvelopeReadLog">
+        INSERT INTO envelopereadlog(ID,IP,readCount,wishCode) VALUES ((SELECT uuid()),#{IP},#{readCount},#{wishCode})
+    </insert>
+    <select id="findEnvelopeReadCountByWishCodeAndIP" resultType="int">
+        SELECT readCount FROM envelopereadlog WHERE IP = #{IP} AND wishCode = #{wishCode}
+    </select>
+    <update id="updateEnvelopeReadConutByWishCodeAndIP">
+        UPDATE envelopereadlog set readCount = #{readCount} WHERE wishCode = #{wishCode} AND IP = #{IP}
+    </update>
+    <select id="findEnvelopeReadLogsByWishCode" resultType="cn.domarvel.pocustom.EnvelopeReadLogCustom">
+        SELECT * FROM envelopereadlog WHERE wishCode = #{wishCode}
+    </select>
+</mapper>
