@@ -251,7 +251,7 @@
             height: 520px;top: auto;z-index: 220;overflow: auto;
         }
         .show-hello{
-            display: inline-block;position: relative;width: 220px;height: 46px;margin-bottom: 20px;
+            display: inline-block;position: relative;width: 352px;height: 46px;margin-bottom: 20px;
         }
         .text-big{
             font: 32px "宋体";
@@ -287,6 +287,10 @@
 </head>
 <body>
 <div class="app">
+    <audio controls hidden id="music">
+        <source src="<c:url value="/"/>res/music/逃跑计划 - 夜空中最亮的星.mp3" type="audio/mpeg">
+        您的浏览器不支持 audio 元素。
+    </audio>
     <!-- 信封 -->
     <div class="envelope-plug">
         <div class="envelope-back envelope-show-rotateX-before">
@@ -346,7 +350,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-content-part">
-                        <input class="form-control verify-input getCheckForm" tagName="祝福码" @click="receiveMessage()" v-model="wishCode" placeholder="输入你的祝福码">
+                        <input class="form-control verify-input getCheckForm" tagName="祝福码" @keydown.enter="receiveMessage()" v-model="wishCode" placeholder="输入你的祝福码">
+                    </div>
+                    <div class="" style="margin: 0 20px">
                         <button class="form-control btn btn-primary verify-btn" @click="receiveMessage()">收信</button>
                     </div>
                 </div>
@@ -525,6 +531,7 @@
                             vm.message = receiveData.message;
                             vm.modalMessage = "收件成功~ 祝你 Happy Every Day~";
                             vm.verifySuccess = true;
+                            $("#music").play();
                         }else if(_data.errorType){
                             vm.modalMessage = _data.errorType;
                         }else{

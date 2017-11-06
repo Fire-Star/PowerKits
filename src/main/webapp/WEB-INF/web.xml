@@ -21,6 +21,7 @@
     <url-pattern>*.ttf</url-pattern>
     <url-pattern>*.zip</url-pattern>
     <url-pattern>*.rar</url-pattern>
+    <url-pattern>*.mp3</url-pattern>
   </servlet-mapping>
   <!-- Spring的配置文件 -->
   <context-param>
