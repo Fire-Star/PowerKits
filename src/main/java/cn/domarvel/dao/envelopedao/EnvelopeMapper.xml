@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.domarvel.dao.envelopedao.EnvelopeMapper">
+    <insert id="saveEnvelope">
+        INSERT INTO envelope(wishCode,receiveMan,envelopeAim,sendMan,dearMan,message) VALUES (#{wishCode},#{receiveMan},#{envelopeAim},#{sendMan},#{dearMan},#{message})
+    </insert>
+    <select id="countEnvelopeByWishCode" resultType="int">
+        SELECT count(wishCode) FROM envelope WHERE wishCode = #{wishCode}
+    </select>
+    <select id="findEnvelopeByWishCode" resultType="cn.domarvel.pocustom.EnvelopeCustom">
+        SELECT receiveMan,envelopeAim,sendMan,dearMan,message FROM envelope WHERE wishCode = #{wishCode}
+    </select>
+</mapper>

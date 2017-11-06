@@ -5,6 +5,8 @@ package cn.domarvel.exception;
  */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
@@ -98,9 +100,8 @@ public class SimpleException extends GetAllCustomException{
      * 直接发送指定消息
      * @param response
      * @param message
-     * @param objectMapper
      */
-    public static void sendMessage(HttpServletResponse response, String message, ObjectMapper objectMapper){
+    public static void sendMessage(HttpServletResponse response, String message){
         try {
             response.setContentType("text/html;charset=utf-8");
             response.setCharacterEncoding("utf-8");
@@ -125,5 +126,12 @@ public class SimpleException extends GetAllCustomException{
         Map<String,String> message = new HashMap<>();
         message.put(key,value);
         SimpleException.sendMessage(response,message,objectMapper);
+    }
+    public static void sendMessage(HttpServletResponse response,ObjectMapper objectMapper,String value){
+        sendMessage(response,objectMapper,"errorType",value);
+    }
+
+    public static void sendMessage(HttpServletResponse response,ObjectMapper objectMapper,Object target) throws Exception{
+        sendMessage(response,"({ \"success\":"+objectMapper.writeValueAsString(target)+"})");
     }
 }
