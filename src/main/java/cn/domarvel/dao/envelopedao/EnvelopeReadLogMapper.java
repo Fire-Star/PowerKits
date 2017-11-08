@@ -12,7 +12,7 @@ public interface EnvelopeReadLogMapper {
 
     public Integer findEnvelopeReadCountByWishCodeAndIP(EnvelopeReadLogCustom envelopeReadLogCustom);
 
-    public void updateEnvelopeReadConutByWishCodeAndIP(EnvelopeReadLogCustom envelopeReadLogCustom);
+    public void updateEnvelopeReadCountByWishCodeAndIP(EnvelopeReadLogCustom envelopeReadLogCustom);
 
     public List<EnvelopeReadLogCustom> findEnvelopeReadLogsByWishCode(String wishCode);
 }

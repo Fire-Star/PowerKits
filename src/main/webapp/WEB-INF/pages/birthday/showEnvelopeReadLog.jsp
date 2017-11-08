@@ -12,9 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>显示状态页面</title>
+    <title>信件日志列表</title>
     <!-- 引入 BootStrap 全家桶 -->
     <script src="<c:url value="/"/>res/js/jquery-3.2.1.min.js"></script>
+    <script src="<c:url value="/"/>res/js/jquery.cookie.js"></script>
     <script src="<c:url value="/"/>res/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/"/>res/css/bootstrap.min.css"/>
 
@@ -51,20 +52,28 @@
 <div class="app">
     <div class="show-log part">
         <button class="btn btn-primary" @click="showLogWindow()" style="display: inline-block;margin: 8px 0">查找信件日志</button>
-        <table class="table table-bordered table-condensed table table-hover">
+        <table class="table table-bordered table-condensed table-hover">
+            <caption class="h3 text-muted text-center">信件阅读日志</caption>
             <tr>
-                <th>#</th>
-                <th>wishCode</th>
-                <th>远程IP</th>
-                <th>阅读次数</th>
+                <th class="text-center" style="vertical-align: middle">#</th>
+                <th class="text-center" style="vertical-align: middle">wishCode</th>
+                <th class="text-center" style="vertical-align: middle">远程IP</th>
+                <th class="text-center" style="vertical-align: middle">阅读次数</th>
+                <th class="text-center" style="vertical-align: middle">操作</th>
             </tr>
-            <tr v-for="(item,index) in status">
-                <td>{{index+1}}</td>
-                <td>{{item.wishCode}}</td>
-                <td>{{item.ip}}</td>
-                <td>{{item.readCount}}</td>
+            <tr class="text-center" v-for="(item,index) in status">
+                <td style="vertical-align: middle">{{index+1}}</td>
+                <td style="vertical-align: middle">{{item.wishCode}}</td>
+                <td style="vertical-align: middle">{{item.ip}}</td>
+                <td style="vertical-align: middle">{{item.readCount}}</td>
+                <td>
+                    <a :href="'<c:url value="/"/>bestwish/envelope/showdetaillogindex?wishCode='+item.wishCode+'&IP='+item.ip" class="btn btn-primary">查看阅读详情</a>
+                </td>
             </tr>
         </table>
+        <div style="text-align: center;" v-if="status.length <= 0">
+            <span class="part">没有数据。。。。</span>
+        </div>
     </div>
     <!-- Button trigger modal -->
     <button type="button" id="btn-modal" class="btn btn-primary btn-lg" style="display: none;" data-toggle="modal" data-target="#modal-read">
@@ -79,10 +88,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-content-part">
-                        <input class="form-control verify-input getCheckForm" tagName="祝福码" @keydown.enter="receiveLog()" v-model="wishCode" placeholder="输入你的祝福码">
+                        <input class="form-control verify-input getCheckForm" tagName="祝福码" @keydown.enter="clickToReceiveLog()" v-model="wishCode" placeholder="输入你的祝福码">
                     </div>
                     <div class="" style="margin: 0 20px">
-                        <button class="form-control btn btn-primary verify-btn" @click="receiveLog()">确定</button>
+                        <button class="form-control btn btn-primary verify-btn" @click="clickToReceiveLog()">确定</button>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -118,7 +127,8 @@
     var data = {
         status:[],
         wishCode:"",
-        modalMessage:""
+        modalMessage:"",
+        initPageSuccess:false
     };
     var vm = new Vue({
         el:'.app',
@@ -128,10 +138,12 @@
                 $('#btn-modal').click();
             },
             receiveLog:function () {
-                isGoCheck = true;
-                window.checkFormData();
-                if(!isGoCheck){
-                    return;
+                if(!vm.initPageSuccess){
+                    isGoCheck = true;
+                    window.checkFormData();
+                    if(!isGoCheck){
+                        return;
+                    }
                 }
 
                 $.get("<c:url value="/"/>bestwish/envelope/showlog?wishCode="+vm.wishCode,function (data, status) {
@@ -142,9 +154,10 @@
                             $('#btn-modal-tishi').click();
                         }else if(_data.success){
                             vm.status = _data.success;
-                            $('#btn-modal').click();
-                            vm.modalMessage = '祝福码:【'+vm.wishCode+"】查询 log 成功！";
-                            $('#btn-modal-tishi').click();
+                            $.cookie('wishCode', vm.wishCode,{ expires: 7 });
+                            if(!vm.initPageSuccess){
+                                $('#btn-modal').click();
+                            }
                         }else if(_data.errorType){
                             vm.modalMessage = _data.errorType;
                             $('#btn-modal-tishi').click();
@@ -154,6 +167,10 @@
                         }
                     }
                 })
+            },
+            clickToReceiveLog:function(){
+                vm.initPageSuccess = false;
+                vm.receiveLog();
             }
         }
     });
@@ -179,6 +196,21 @@
         });
     };
 
-    $('#btn-modal').click();
+    function initPage() {
+        var wishCode = "";
+        wishCode = $.query.get("wishCode");
+        if(!wishCode){
+            wishCode = $.cookie("wishCode");
+            console.log("--------->【"+wishCode+"】");
+            if(!wishCode){
+                $('#btn-modal').click();
+                return;
+            }
+            vm.initPageSuccess = true;
+            vm.wishCode = wishCode;
+            vm.receiveLog();
+        }
+    }
+    initPage();
 </script>
 </html>

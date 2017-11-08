@@ -9,7 +9,7 @@
     <select id="findEnvelopeReadCountByWishCodeAndIP" resultType="int">
         SELECT readCount FROM envelopereadlog WHERE IP = #{IP} AND wishCode = #{wishCode}
     </select>
-    <update id="updateEnvelopeReadConutByWishCodeAndIP">
+    <update id="updateEnvelopeReadCountByWishCodeAndIP">
         UPDATE envelopereadlog set readCount = #{readCount} WHERE wishCode = #{wishCode} AND IP = #{IP}
     </update>
     <select id="findEnvelopeReadLogsByWishCode" resultType="cn.domarvel.pocustom.EnvelopeReadLogCustom">

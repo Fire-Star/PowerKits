@@ -10,7 +10,7 @@
         SELECT count(wishCode) FROM envelope WHERE wishCode = #{wishCode}
     </select>
     <select id="findEnvelopeByWishCode" resultType="cn.domarvel.pocustom.EnvelopeCustom">
-        SELECT receiveMan,envelopeAim,sendMan,dearMan,message FROM envelope WHERE wishCode = #{wishCode}
+        SELECT wishCode,receiveMan,envelopeAim,sendMan,dearMan,message,receiveManEmail,sendManEmail FROM envelope WHERE wishCode = #{wishCode}
     </select>
     <select id="findSendManEmailByWishCode" resultType="String">
         SELECT sendManEmail FROM envelope WHERE wishCode = #{wishCode}
@@ -18,4 +18,7 @@
     <select id="findReceiveManEmailByWishCode" resultType="String">
         SELECT receiveManEmail FROM envelope WHERE wishCode = #{wishCode}
     </select>
+    <update id="updateEnvelope">
+        UPDATE envelope set receiveMan = #{receiveMan},envelopeAim = #{envelopeAim},sendMan = #{sendMan},dearMan = #{dearMan},message = #{message},receiveManEmail = #{receiveManEmail},sendManEmail = #{sendManEmail} WHERE wishCode = #{wishCode}
+    </update>
 </mapper>

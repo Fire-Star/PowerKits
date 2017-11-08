@@ -16,4 +16,6 @@ public interface EnvelopeMapper {
     public String findSendManEmailByWishCode(String wishCode);
 
     public String findReceiveManEmailByWishCode(String wishCode);
+
+    public void updateEnvelope(EnvelopeCustom envelopeCustom);
 }

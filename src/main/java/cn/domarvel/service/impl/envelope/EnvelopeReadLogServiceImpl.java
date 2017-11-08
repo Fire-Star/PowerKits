@@ -24,13 +24,14 @@ public class EnvelopeReadLogServiceImpl implements EnvelopeReadLogService {
     @Override
     public void saveEnvelopeReadLog(EnvelopeReadLogCustom envelopeReadLogCustom) throws Exception {
         BeanPropertyValidateUtils.validateIsEmptyProperty(envelopeReadLogCustom);
+        System.out.println(envelopeReadLogCustom);
         Integer readCount = envelopeReadLogMapper.findEnvelopeReadCountByWishCodeAndIP(envelopeReadLogCustom);
         if(readCount == null){//如果 ReadCount 等于 null 那么，就还没有记录当前 IP && 祝福码 的次数
             envelopeReadLogCustom.setReadCount(1);
             envelopeReadLogMapper.saveEnvelopeReadLog(envelopeReadLogCustom);//保存到数据库
         }else{
             envelopeReadLogCustom.setReadCount(++readCount);//自增一
-            envelopeReadLogMapper.updateEnvelopeReadConutByWishCodeAndIP(envelopeReadLogCustom);
+            envelopeReadLogMapper.updateEnvelopeReadCountByWishCodeAndIP(envelopeReadLogCustom);
         }
     }
 

@@ -57,7 +57,7 @@ public class BeanPropertyValidateUtils {
 
     public static String validateStrIsEmpty(String targetStr , String propName) throws Exception{
         if(targetStr==null || "".equals(targetStr.trim())){
-            throw new SimpleException(propName+" 不能为空！");
+            throw new SimpleException("【"+propName+"】 不能为空！");
         }
         targetStr = targetStr.trim();
         return targetStr;

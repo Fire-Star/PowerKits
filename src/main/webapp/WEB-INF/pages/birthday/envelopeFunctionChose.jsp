@@ -72,6 +72,12 @@
         .read:hover{
             background-color: #ff8c38;color: white;
         }
+        .edit{
+            background-color: #4494D8;color: white;
+        }
+        .edit:hover{
+            background-color: #2F76B3;color: white;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +92,11 @@
             <div class="part-inline">
                 <a class="tag read" href="<c:url value="/"/>bestwish/envelope/read/index">
                     <span style="line-height: 127px">收信</span>
+                </a>
+            </div>
+            <div class="part-inline">
+                <a class="tag edit" href="<c:url value="/"/>bestwish/envelope/reedit">
+                    <span style="line-height: 127px">修改</span>
                 </a>
             </div>
         </div>

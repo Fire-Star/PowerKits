@@ -326,10 +326,10 @@
             <div class="envelope-pack envelope-pack-getAnimation">
                 <div class="email clearSpace-part">
                     <div class="part">
-                        <input type="text" style="margin-bottom: 6px" class="form-control showInput getCheckForm getCheckEmail" v-model="receiveManEmail" tagName="收件人的邮件地址" placeholder="收件人的邮件地址">
+                        <input type="text" style="margin-bottom: 6px" class="form-control showInput getCheckForm getCheckEmail" v-model="receiveManEmail" propName="receiveManEmail" tagName="收件人的邮件地址" placeholder="收件人的邮件地址">
                     </div>
                     <div class="part">
-                        <input type="text" class="form-control showInput getCheckForm getCheckEmail" v-model="sendManEmail" tagName="发件人的邮件地址" placeholder="发件人的邮件地址">
+                        <input type="text" class="form-control showInput getCheckForm getCheckEmail" v-model="sendManEmail" propName="sendManEmail" tagName="发件人的邮件地址" placeholder="发件人的邮件地址">
                     </div>
                 </div>
                 <div class="zhezhao"></div>
@@ -344,10 +344,10 @@
             <div class="envelope-message envelope-message-show">
                 <div class="show-hello" style="font: 0px '宋体';">
                     <span class="text text-big">致:</span>
-                    <span class="text" style="margin-left: 5px"><input type="text" class="form-control showInput zhi-input getCheckForm" tagName="信内容中的 致 谁谁谁" v-model="dearMan" placeholder="收信人"></span>
+                    <span class="text" style="margin-left: 5px"><input type="text" class="form-control showInput zhi-input getCheckForm" tagName="信内容中的 致 谁谁谁" v-model="dearMan" propName="dearMan" placeholder="收信人"></span>
                 </div>
                 <div class="envelope-message-content">
-                        <textarea class="form-control showInput envelope-message-edit getCheckForm" tagName="祝福信内容" v-model="message">
+                        <textarea class="form-control showInput envelope-message-edit getCheckForm" tagName="祝福信内容" v-model="message" propName="message">
 
                         </textarea>
                 </div>
@@ -355,7 +355,7 @@
             <div class="envelope envelope-back-x">
                 <div class="envelope-send">
                     <div class="input-group">
-                        <input type="text" class="form-control front-input getCheckForm" tagName="信封背面的祝福码" style="height: 38px;" v-model="wishCode" placeholder="输入唯一祝福码">
+                        <input type="text" class="form-control front-input getCheckForm" tagName="信封背面的祝福码" style="height: 38px;" v-model="wishCode" propName="wishCode" placeholder="输入唯一祝福码">
                         <div class="input-group-btn">
                             <button class="btn btn-danger envelope-send-button" @click="sendEnvelope()">发送</button>
                         </div>
@@ -369,18 +369,18 @@
                 <div class="envelope-title">
                     <span class="text title-highlight">T</span>
                     <span class="text" style="font: 25px '宋体';">O:</span>
-                    <span class="text title-name"><input type="text" class="form-control showInput front-input getCheckForm" tagName="信封正面的收信人" placeholder="收信人" v-model="receiveMan"></span>
+                    <span class="text title-name"><input type="text" class="form-control showInput front-input getCheckForm" tagName="信封正面的收信人" placeholder="收信人" v-model="receiveMan" propName="receiveMan"></span>
                 </div>
                 <div class="envelop-front-stamp">
                     <img class="stamp-img" style="width: 100%;" title="love" draggable="false" src="<c:url value="/"/>res/img/stamp03.gif">
                 </div>
                 <div class="envelope-front-message text-front-message">
-                    <input class="form-control showInput front-input front-input-target getCheckForm" tagName="信封正面的 信件目的表述" type="text" maxlength="16" v-model="envelopeAim" placeholder="这封信的目的">
+                    <input class="form-control showInput front-input front-input-target getCheckForm" tagName="信封正面的 信件目的表述" type="text" propName="envelopeAim" maxlength="16" v-model="envelopeAim" placeholder="这封信的目的">
                 </div>
                 <div class="envelope-footer">
                     <span class="text title-highlight">F</span>
                     <span class="text" style="font: 25px '宋体';">rom:</span>
-                    <span class="text title-name"><input type="text" class="form-control showInput front-input getCheckForm" tagName="信封正面的 寄信人" v-model="sendMan" placeholder="寄信人"></span>
+                    <span class="text title-name"><input type="text" class="form-control showInput front-input getCheckForm" tagName="信封正面的 寄信人" v-model="sendMan" propName="sendMan" placeholder="寄信人"></span>
                 </div>
                 <span class="text show-toggle-text" @click="addTransform">查看信封背面</span>
             </div>
@@ -428,6 +428,33 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!-- Button trigger modal -->
+    <button type="button" id="btn-modal-reedit" class="btn btn-primary btn-lg" style="display: none;" data-toggle="modal" data-target="#modal-reedit">
+        弹出模态框
+    </button>
+    <div class="modal fade" id="modal-reedit" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改信件</h4>
+                </div>
+                <div class="modal-body">
+                    <span class="text-danger text">{{modalMessage}}</span>
+                    <div class="modal-content-part">
+                        <input class="form-control verify-input getCheckForm" tagName="祝福码" @keydown.enter="initPage()" v-model="wishCode" placeholder="输入要修改信件祝福码">
+                    </div>
+                    <div class="" style="margin: 0 20px">
+                        <button class="form-control btn btn-primary verify-btn" @click="initPage()" >确定</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
 </body>
 <script>
@@ -446,7 +473,8 @@
         message:"", //信 的内容
         stamp:"", //邮票
         receiveManEmail:"", //收件人的邮件地址
-        sendManEmail:"" //发件人的邮件地址
+        sendManEmail:"", //发件人的邮件地址
+        hasLoadReEditData:false
     };
     var vm = new Vue({
         el:'.app',
@@ -498,6 +526,10 @@
                 },610);
             },
             verifyPerson: function(){
+                if(!vm.hasLoadReEditData){
+                    $('#btn-modal-reedit').click();
+                    return;
+                }
                 if(!vm.verifyPersonIsExecute){
                     vm.verifyPersonIsExecute = true;
                 }else{
@@ -557,6 +589,10 @@
                 return true;
             },
             sendEnvelope:function () {
+                if(!vm.hasLoadReEditData){
+                    $('#btn-modal-reedit').click();
+                    return;
+                }
                 isGoCheck = true;
                 window.checkFormData();
                 if(!isGoCheck){
@@ -566,12 +602,7 @@
                 if(!isGoCheck){
                     return;
                 }
-                $.get("<c:url value="/"/>bestwish/envelope/exist?wishCode="+vm.wishCode,function (data, status) {
-                    if(status){
-                        var _data = eval(data);
-                        annalysData(_data);
-                    }
-                })
+                vm.affirmSave();
             },
             saveOrUpdateEnvelope:function(){
                 $.post("<c:url value="/"/>bestwish/envelope/send",
@@ -595,7 +626,6 @@
                 );
             },
             affirmSave:function(){
-                $('#btn-modal-choise').click();
                 vm.saveOrUpdateEnvelope();
             }
         }
@@ -632,6 +662,12 @@
             if(isGoCheck){
                 var itemData = $.trim($(this).val());
                 var attrName = $(this).attr("tagName");
+                var propName= $(this).attr("propName");
+
+                if(!itemData){
+                    itemData = vm[propName];
+                }
+
                 if(!itemData){
                     vm.modalMessage = attrName+" 不能为空！！！";
                     $(this).parent().addClass("has-error");
@@ -653,6 +689,11 @@
             if(isGoCheck){
                 var itemData = $.trim($(this).val());
                 var attrName = $(this).attr("tagName");
+                var propName= $(this).attr("propName");
+
+                if(!itemData){
+                    itemData = vm[propName];
+                }
                 if(!regex.test(itemData)){
                     vm.modalMessage = attrName+" 不是一个正确的邮箱地址！！！";
                     $(this).parent().addClass("has-error");
@@ -664,5 +705,42 @@
             }
         });
     }
+    function initPage() {
+
+        if(!vm.wishCode){
+            vm.modalMessage = "祝福码不能为空！";
+            return;
+        }
+        $.get("<c:url value="/"/>bestwish/envelope/read?edit=true&wishCode="+vm.wishCode,function (data, status) {
+            if (status) {
+                var _data = eval(data);
+                console.log(_data);
+                if(!_data){
+                    vm.modalMessage = "啊哦~ 服务器没有找到你的信件，请稍后再来~";
+                }else if(_data.success){
+                    var receiveData = _data.success;
+                    if(!receiveData.wishCode){
+                        vm.modalMessage = "该祝福码下没有信件，请重新输入祝福码！";
+                        return;
+                    }
+                    vm.receiveMan = receiveData.receiveMan;
+                    vm.envelopeAim = receiveData.envelopeAim;
+                    vm.sendMan = receiveData.sendMan;
+                    vm.dearMan = receiveData.dearMan;
+                    vm.sendManEmail = receiveData.sendManEmail;
+                    vm.receiveManEmail = receiveData.receiveManEmail;
+                    vm.message = receiveData.message;
+                    $('#btn-modal-reedit').click();
+                    vm.hasLoadReEditData = true;
+                }else if(_data.errorType){
+                    vm.modalMessage = _data.errorType;
+                }else{
+                    vm.modalMessage = "啊哦~ 服务器没有找到你的信件，请稍后再来~";
+                }
+
+            }
+        });
+    }
+    $('#btn-modal-reedit').click();
 </script>
 </html>

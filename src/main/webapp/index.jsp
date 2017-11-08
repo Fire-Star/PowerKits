@@ -110,7 +110,7 @@
                         <img style="width: 100%;height: 65%;border: none" src="<c:url value="/"/>res/img/envelope/function1.png">
                         <span style="line-height: 2em;font-size: 1.4em;display: inline-block;">自媒体访问量</span>
                     </a>
-                    <a class="function-tag part" href="<c:url value="/"/>berstwish/envelope/index">
+                    <a class="function-tag part" href="<c:url value="/"/>bestwish/envelope/index">
                         <img style="width: 100%;height: 65%;border: none" src="<c:url value="/"/>res/img/envelope/function2.png">
                         <span style="line-height: 2em;font-size: 1.4em;display: inline-block;">Best Wish To You</span>
                     </a>
@@ -137,24 +137,5 @@
         el:'.app',
         data:data
     });
-
-    $.get("hasEqSuccessFile",function (data, status) {
-        if(status == "success"){
-            var _data = eval(data);
-            if(!_data){
-                vm.modalStatus = '发生未知错误，请联系管理员！';
-                $('#modalButton').click();
-            }else if(_data.hasInsertEqSuccessFile){
-                if(_data.hasInsertEqSuccessFile=="1"){
-                    vm.showDownloadSuccessEqFile = true;
-                }else{
-                    vm.showDownloadSuccessEqFile = false;
-                }
-            }else if(_data.errorType){
-                vm.modalStatus = _data.errorType;
-                $('#modalButton').click();
-            }
-        }
-    })
 </script>
 </html>

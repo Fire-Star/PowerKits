@@ -35,6 +35,24 @@ CREATE TABLE `envelope` (
 
 /*Data for the table `envelope` */
 
+insert  into `envelope`(`wishCode`,`receiveMan`,`envelopeAim`,`sendMan`,`dearMan`,`message`,`stamp`,`sendManEmail`,`receiveManEmail`) values ('Best Wish To Joy','杨舒粤(Joy)','Happy Birthday','胡艺宝(MoonFollow)','漂亮得能让世界毁灭的菇凉','这是我第一次为女生准备生日礼物，很高兴听见你说你喜欢，生日快乐~~~\n\n    我们大学读书有两年半，但是真正认识并且聊天的时间只有7个月。时间虽然很少，但是，就是这么点时间，却给我生命带来了很多的成长。真的发自内心，非常的感谢你！！！\n    大一我进大学，我就抱着这必将是孤独旅程的觉悟在学习，虽然给我带来了不少专业上的知识长进，但是对我的内心以及在现实中跟别人交流带来了很大的障碍，特别是对于女生。这种障碍随着时间的推移愈发的不可忽视。在大二上期的一段时间，我同床铺的那个哥们，每天都在把不同的妹子，一天晚上，我学习完回寝室，那哥们说要跟别人打比赛，让我帮他跟新加的一个妹子聊。这在对我初中和高中来说，真的是小 case，但是在这一刻我却没办法跟女生进行正常交谈，我只感觉世界都是灰暗的。\n    我当时聊天就问她这样，问她那样，像调查户口一样。糟糕到了这种地步。瞬间体会到了什么叫绝望——终。\n    另外，我也明白了一个词语叫“自卑”，在一个月前，我不觉得我是一个自卑的人。这也印证了那句话，很多时候自己是看不到自己的缺点的。就像程序员很多时候都认为自己写的程序是无懈可击的，是世界上最 \"屌\" 的。但是，你让我深刻的体会到我内心深处是存在自卑的，并且也深刻认识到，这个缺点绝对不是男人应该有的东西。不然怎么去守护一个家。别人怎么会瞧得起自己。\n    说起 \"自卑\" 另外一个东西叫做 \"自信\"。一个月前，我才发现，我是很缺少自信的，在之前我绝对因为这两个缺点失去了不少珍贵的东西。现在我不想再因为这两个缺点失去东西了。那样真的对我很不公平。\n    面对汹涌而来的现实，有时候真的会让人感到自己很渺小、很无力。有时候还会让人觉得灰心。但这也是生命的一部分，永远不要 \"自卑\" ，永远不要失去 \"自信\"。因为有困难所以才要去挑战，人生才有意义，这样才会超越其他人，才不会变得平庸，So 为什么要失去自信？\n    这个过程会很痛，会很辛苦，但总有一天你将破蛹而出，成长得比人们期待得还要美丽。因为有痛才会成长，不要害怕。\n\n——————————————————————————————————————\n\n    我感觉，我说了很多废话啊，hahaha。这个Web是我花了几天时间专门为你准备的，昨晚还 4:52 才睡觉的。嘿嘿~~~喜欢吗？？\n\n    我很想，你能通过这个WebKit给我回信~~~~\n\n    最后的最后，再次给你祝福，生日快乐，你是我人生见过最漂亮最勤奋的一个女孩子，你的人生绝对不会差，如果发达了，记得带上我哦~~~嘿嘿嘿。\n\n    还有还有，我已经把  你说要请我吃最贵的肉截图了，嘿嘿嘿，记得单独请我~~~别食言了。不然我会很伤心的。\n\n\n    生日快乐！！！！\n\n\n\n\n                                                          永远支持你的傻宝\n\n\n                                                           2017/11/6 晚',NULL,'1428384239@qq.com','1428384239@qq.com'),('CCC','SADFSD','FSDF','SDAFDS','ASDFDASF','DSAFDASF',NULL,'1428384239@qq.com','1428384239@qq.com'),('TEST01','TT','TT','TT','TT','TT',NULL,'1428384239@qq.com','1428384239@qq.com');
+
+/*Table structure for table `envelopereaddetaillog` */
+
+DROP TABLE IF EXISTS `envelopereaddetaillog`;
+
+CREATE TABLE `envelopereaddetaillog` (
+  `ID` char(36) NOT NULL,
+  `IP` char(30) NOT NULL COMMENT '远程IP',
+  `wishCode` char(50) NOT NULL COMMENT '祝福码',
+  `time` datetime NOT NULL COMMENT '阅读时间',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `envelopereaddetaillog` */
+
+insert  into `envelopereaddetaillog`(`ID`,`IP`,`wishCode`,`time`) values ('1c9218b5-c47a-11e7-bc8b-1cb72c2f3c53','0:0:0:0:0:0:0:1','Best Wish To Joy','2017-11-08 00:00:00');
+
 /*Table structure for table `envelopereadlog` */
 
 DROP TABLE IF EXISTS `envelopereadlog`;
@@ -48,6 +66,8 @@ CREATE TABLE `envelopereadlog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `envelopereadlog` */
+
+insert  into `envelopereadlog`(`ID`,`IP`,`readCount`,`wishCode`) values ('c7e3dfef-c349-11e7-bc8b-1cb72c2f3c53','0:0:0:0:0:0:0:1',9,'Best Wish To Joy'),('f6908d71-c35d-11e7-bc8b-1cb72c2f3c53','0:0:0:0:0:0:0:1',2,'TEST01');
 
 /*Table structure for table `hotcritical` */
 

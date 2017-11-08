@@ -531,7 +531,7 @@
                             vm.message = receiveData.message;
                             vm.modalMessage = "收件成功~ 祝你 Happy Every Day~";
                             vm.verifySuccess = true;
-                            $("#music").play();
+                            $("#music")[0].play();
                         }else if(_data.errorType){
                             vm.modalMessage = _data.errorType;
                         }else{
