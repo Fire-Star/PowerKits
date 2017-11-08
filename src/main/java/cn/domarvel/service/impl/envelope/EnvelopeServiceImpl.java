@@ -9,10 +9,11 @@ import cn.domarvel.service.envelope.EnvelopeReadDetailLogService;
 import cn.domarvel.service.envelope.EnvelopeReadLogService;
 import cn.domarvel.service.envelope.EnvelopeService;
 import cn.domarvel.utils.BeanPropertyValidateUtils;
+import cn.domarvel.web.controller.envelopeController.EnvelopeReadDetailLogController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 /**
@@ -75,7 +76,7 @@ public class EnvelopeServiceImpl implements EnvelopeService{
             EnvelopeReadDetailLogCustom envelopeReadDetailLogCustom = new EnvelopeReadDetailLogCustom();
             envelopeReadDetailLogCustom.setIP(remoteIP);
             envelopeReadDetailLogCustom.setWishCode(wishCode);
-            envelopeReadDetailLogCustom.setTime(new Date(new java.util.Date().getTime()));
+            envelopeReadDetailLogCustom.setTime(EnvelopeReadDetailLogController.cnDateFormate.format(new Date()));
             envelopeReadDetailLogService.saveEnvelopeReadDetailLog(envelopeReadDetailLogCustom);
         }
 

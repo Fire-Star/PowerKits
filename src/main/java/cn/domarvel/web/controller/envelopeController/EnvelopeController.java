@@ -117,7 +117,7 @@ public class EnvelopeController {
                         String sendManEmail = envelopeService.findSendManEmailByWishCode(finalWishCode);
                         if(!"".equals(sendManEmail)){
                             MailUtils.sendEasyMail("【祝福信件阅读提醒】","祝福码:【"+finalWishCode+"】，邮件被阅读！<br/>"+"远程阅读IP:"+remoteIP+"<br>" +
-                                            "可以通过下面地址对阅读日志进行查看：http://www.notifymyself.com/bestwish/envelope/showlogindex?wishCode="+finalWishCode,
+                                            "可以通过下面地址对阅读日志进行查看：【http://www.notifymyself.com/bestwish/envelope/showlogindex?wishCode="+finalWishCode+"】",
                                     sendManEmail);
                         }
                         System.out.println("发送邮件给发件人成功！");

@@ -8,7 +8,6 @@ import cn.domarvel.utils.BeanPropertyValidateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -26,10 +25,7 @@ public class EnvelopeReadDetailLogServiceImpl implements EnvelopeReadDetailLogSe
     @Override
     public void saveEnvelopeReadDetailLog(EnvelopeReadDetailLogCustom envelopeReadDetailLogCustom) throws Exception {
         BeanPropertyValidateUtils.validateIsEmptyProperty(envelopeReadDetailLogCustom);
-        Date readTime = envelopeReadDetailLogCustom.getTime();
-        if(readTime == null){
-            throw new SimpleException("【阅读日志时间】不能为空！");
-        }
+
         envelopeReadDetailLogMapper.saveEnvelopeReadDetailLog(envelopeReadDetailLogCustom);
     }
 

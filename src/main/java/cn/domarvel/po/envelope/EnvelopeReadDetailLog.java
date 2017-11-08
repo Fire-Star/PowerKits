@@ -16,7 +16,8 @@ public class EnvelopeReadDetailLog {
     private String IP; //远程IP
     @BeanPropertyErrorType(propertyName = "祝福码")
     private String wishCode; //祝福码
-    private Date time; //阅读时间
+    @BeanPropertyErrorType(propertyName = "阅读时间")
+    private String time; //阅读时间
 
     public EnvelopeReadDetailLog() {
     }
@@ -55,11 +56,11 @@ public class EnvelopeReadDetailLog {
         this.wishCode = wishCode;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

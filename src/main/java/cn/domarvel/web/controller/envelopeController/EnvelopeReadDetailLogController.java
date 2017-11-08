@@ -31,7 +31,7 @@ public class EnvelopeReadDetailLogController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private SimpleDateFormat cnDateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public static SimpleDateFormat cnDateFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @RequestMapping("/bestwish/envelope/showdetaillogindex")
     public String showDetailLog(){
@@ -50,7 +50,8 @@ public class EnvelopeReadDetailLogController {
         for (EnvelopeReadDetailLogCustom readDetailLogCustom : tempResults) {
             EnvelopeReadDetailLogVo envelopeReadDetailLogVo = new EnvelopeReadDetailLogVo();
             envelopeReadDetailLogVo.setIP(readDetailLogCustom.getIP());
-            envelopeReadDetailLogVo.setVoTime(cnDateFormate.format(readDetailLogCustom.getTime().getTime()));
+            envelopeReadDetailLogVo.setVoTime(readDetailLogCustom.getTime());
+            envelopeReadDetailLogVo.setVoTime(envelopeReadDetailLogVo.getVoTime().replaceAll("\\.0",""));
             envelopeReadDetailLogVo.setWishCode(readDetailLogCustom.getWishCode());
             results.add(envelopeReadDetailLogVo);
         }

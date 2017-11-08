@@ -16,6 +16,7 @@
     <!-- 引入 BootStrap 全家桶 -->
     <script src="<c:url value="/"/>res/js/jquery-3.2.1.min.js"></script>
     <script src="<c:url value="/"/>res/js/jquery.cookie.js"></script>
+    <script src="<c:url value="/"/>res/js/Jquery.Query.js"></script>
     <script src="<c:url value="/"/>res/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/"/>res/css/bootstrap.min.css"/>
 
@@ -202,14 +203,14 @@
         if(!wishCode){
             wishCode = $.cookie("wishCode");
             console.log("--------->【"+wishCode+"】");
-            if(!wishCode){
-                $('#btn-modal').click();
-                return;
-            }
-            vm.initPageSuccess = true;
-            vm.wishCode = wishCode;
-            vm.receiveLog();
         }
+        if(!wishCode){
+            $('#btn-modal').click();
+            return;
+        }
+        vm.initPageSuccess = true;
+        vm.wishCode = wishCode;
+        vm.receiveLog();
     }
     initPage();
 </script>
