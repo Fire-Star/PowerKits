@@ -1,14 +1,23 @@
 package cn.domarvel.utils;
 
 import cn.domarvel.exception.SimpleException;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.security.Security;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * Create by MoonFollow (or named FireLang)
@@ -71,6 +80,25 @@ public class MailUtils {
         }catch (MessagingException e){
             e.printStackTrace();
             throw new SimpleException("邮件发送失败！");
+        }
+    }
+    public static void main(String[] args){
+        int repeatCount = 100000; //十万
+        while (repeatCount-- > 0){
+            try {
+                HttpClient httpClient = HttpClientBuilder.create().build();
+                HttpGet httpGet = new HttpGet("http://116.196.93.48/test/alert.php");
+                httpGet.setHeader("Cookie","is_write=Y");
+                HttpEntity httpEntity = httpClient.execute(httpGet).getEntity();
+                System.out.println(EntityUtils.toString(httpEntity));
+            }catch (Exception e){
+                System.out.println("又被防火墙阻断了！！！");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e1) {
+                    System.out.println("休眠失败！！！");
+                }
+            }
         }
     }
 }
