@@ -82,23 +82,18 @@ public class MailUtils {
             throw new SimpleException("邮件发送失败！");
         }
     }
-    public static void main(String[] args){
-        int repeatCount = 100000; //十万
-        while (repeatCount-- > 0){
-            try {
-                HttpClient httpClient = HttpClientBuilder.create().build();
-                HttpGet httpGet = new HttpGet("http://116.196.93.48/test/alert.php");
-                httpGet.setHeader("Cookie","is_write=Y");
-                HttpEntity httpEntity = httpClient.execute(httpGet).getEntity();
-                System.out.println(EntityUtils.toString(httpEntity));
-            }catch (Exception e){
-                System.out.println("又被防火墙阻断了！！！");
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e1) {
-                    System.out.println("休眠失败！！！");
-                }
+    public static void main(String[] args) throws IOException {
+        int count = 30000;
+        try {
+            while (count-- > 0){
+                HttpClient client = HttpClientBuilder.create().build();
+                HttpGet httpGet = new HttpGet("http://blog.csdn.net/marvel__dead");
+                HttpEntity entity = client.execute(httpGet).getEntity();
+                System.out.println(count);
+                Thread.sleep(2000);
             }
+        }catch (Exception e){
+            System.out.println("被服务器防火墙暂时断开了访问！！！");
         }
     }
 }
