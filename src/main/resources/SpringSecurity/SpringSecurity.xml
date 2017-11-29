@@ -25,6 +25,8 @@
 
 
     <security:http pattern="/test/**" security="none"></security:http><!-- 不过滤测试内容 -->
+    <security:http pattern="/music/outlink" security="none"></security:http><!-- 不过滤测试内容 -->
+    <security:http pattern="/res/music/**" security="none"></security:http><!-- 不过滤测试内容 -->
 
     <!-- 要让页面的不同权限显示不同内容，你需要写上这个 -->
     <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />

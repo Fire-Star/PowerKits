@@ -12,6 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <title>OutLink</title>
     <!-- 引入 BootStrap 全家桶 -->
     <script src="<c:url value="/"/>res/js/jquery-3.2.1.min.js"></script>
