@@ -1,7 +1,7 @@
 package cn.domarvel.service.impl.envelope;
 
 import cn.domarvel.dao.envelopedao.EnvelopeReadLogMapper;
-import cn.domarvel.pocustom.EnvelopeReadLogCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeReadLogCustom;
 import cn.domarvel.service.envelope.EnvelopeReadLogService;
 import cn.domarvel.utils.BeanPropertyValidateUtils;
 import org.springframework.beans.factory.annotation.Autowired;

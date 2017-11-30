@@ -6,7 +6,7 @@
     <insert id="saveEnvelopeReadDetailLog">
         INSERT INTO envelopereaddetaillog(ID,IP,wishCode,`time`) VALUES((SELECT uuid()),#{IP},#{wishCode},#{time})
     </insert>
-    <select id="findEnvelopeReadDetailLogByWishCodeAndIP" resultType="cn.domarvel.pocustom.EnvelopeReadDetailLogCustom">
+    <select id="findEnvelopeReadDetailLogByWishCodeAndIP" resultType="cn.domarvel.pocustom.envelope.EnvelopeReadDetailLogCustom">
         SELECT * FROM envelopereaddetaillog WHERE wishCode = #{wishCode} AND IP = #{IP}
     </select>
 </mapper>

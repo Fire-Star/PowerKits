@@ -1,6 +1,6 @@
 package cn.domarvel.service.envelope;
 
-import cn.domarvel.pocustom.EnvelopeCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeCustom;
 
 public interface EnvelopeService {
     /**

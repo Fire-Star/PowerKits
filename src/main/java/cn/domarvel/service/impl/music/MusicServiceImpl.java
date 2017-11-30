@@ -1,12 +1,18 @@
 package cn.domarvel.service.impl.music;
 
+import cn.domarvel.dao.music.MusicMapper;
 import cn.domarvel.exception.SimpleException;
+import cn.domarvel.pocustom.music.MusicCustom;
 import cn.domarvel.service.music.MusicServer;
 import cn.domarvel.utils.BeanPropertyValidateUtils;
+import cn.domarvel.utils.StringUtils;
+import cn.domarvel.vo.music.MusicVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,6 +25,9 @@ import java.util.List;
 public class MusicServiceImpl implements MusicServer{
 
     private static final int MAX_FILE_SISE = 30720;//最大 30MB
+
+    @Autowired
+    private MusicMapper musicMapper;
 
     public String upload(MultipartFile file,String uploadDir) throws Exception {
         //获取文件类型
@@ -50,10 +59,37 @@ public class MusicServiceImpl implements MusicServer{
     }
 
     @Override
-    public List<String> getMusicNames(String basePath) throws Exception {
-
-        return null;
+    public List<MusicVo> findAll() throws Exception {
+        List<MusicCustom> musicCustoms = musicMapper.findAll();
+        if(musicCustoms == null){
+            musicCustoms = new LinkedList<>();
+        }
+        List<MusicVo> result = new LinkedList<>();
+        for (MusicCustom musicCustom : musicCustoms) {
+            MusicVo temp = new MusicVo();
+            temp.setName(musicCustom.getName());
+            temp.setUploadRemoteIP(musicCustom.getUploadRemoteIP());
+            temp.setEnTime(StringUtils.getEnTime(musicCustom.getUploadTime()));
+            result.add(temp);
+        }
+        return result;
     }
 
+    @Override
+    public void insert(MusicCustom musicCustom) throws Exception {
+        BeanPropertyValidateUtils.validateIsEmptyProperty(musicCustom);
+        if(musicCustom.getUploadTime() == null){
+            throw new SimpleException("音乐上传时间不能为空！");
+        }
+        musicMapper.insert(musicCustom);
+    }
 
+    @Override
+    public void delete(String musicName ,String bathDir) throws Exception {
+        BeanPropertyValidateUtils.validateStrIsEmpty(musicName,"要删除的音乐名称");
+        musicMapper.delete(musicName);//删除数据库音频日志
+        //删除目标音频文件
+        File targetMusicFile = new File(bathDir+musicName);
+        targetMusicFile.delete();
+    }
 }

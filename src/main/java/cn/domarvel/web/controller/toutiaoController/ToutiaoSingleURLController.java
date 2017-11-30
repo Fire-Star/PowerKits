@@ -3,14 +3,13 @@ package cn.domarvel.web.controller.toutiaoController;
 import cn.domarvel.exception.SimpleException;
 import cn.domarvel.myMediaModel.BrushRequest;
 import cn.domarvel.myMediaModel.utils.BrushHttpRequestUtils;
-import cn.domarvel.service.ToutiaoSingleUrlService;
+import cn.domarvel.service.selfmedia.toutiao.ToutiaoSingleUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 /**

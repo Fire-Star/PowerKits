@@ -1,9 +1,9 @@
 package cn.domarvel.springsecurity.model;
 
-import cn.domarvel.dao.UserMapper;
-import cn.domarvel.dao.UserRoleMapper;
-import cn.domarvel.po.Role;
-import cn.domarvel.pocustom.UserCustom;
+import cn.domarvel.dao.security.UserMapper;
+import cn.domarvel.dao.security.UserRoleMapper;
+import cn.domarvel.po.security.Role;
+import cn.domarvel.pocustom.security.UserCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,8 +16,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator on 2017/8/9.
@@ -36,7 +34,7 @@ public class CustomUserService implements UserDetailsService{
 
         UserCustom requestMessage = new UserCustom(username,"");
 
-        cn.domarvel.po.User resultUser = userMapper.findUserByUsername(requestMessage);
+        cn.domarvel.po.security.User resultUser = userMapper.findUserByUsername(requestMessage);
         if (resultUser == null) {
             return null;
         }

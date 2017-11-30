@@ -1,7 +1,7 @@
 package cn.domarvel.web.controller.envelopeController;
 
 import cn.domarvel.exception.SimpleException;
-import cn.domarvel.pocustom.EnvelopeReadLogCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeReadLogCustom;
 import cn.domarvel.service.envelope.EnvelopeReadLogService;
 import cn.domarvel.utils.SimpleBeanUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;

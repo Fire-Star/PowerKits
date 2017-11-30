@@ -1,6 +1,6 @@
 package cn.domarvel.dao.envelopedao;
 
-import cn.domarvel.pocustom.EnvelopeReadLogCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeReadLogCustom;
 
 import java.util.List;
 

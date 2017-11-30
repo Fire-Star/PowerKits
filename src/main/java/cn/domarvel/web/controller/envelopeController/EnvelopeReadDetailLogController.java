@@ -1,10 +1,10 @@
 package cn.domarvel.web.controller.envelopeController;
 
 import cn.domarvel.exception.SimpleException;
-import cn.domarvel.pocustom.EnvelopeReadDetailLogCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeReadDetailLogCustom;
 import cn.domarvel.service.envelope.EnvelopeReadDetailLogService;
 import cn.domarvel.utils.SimpleBeanUtils;
-import cn.domarvel.vo.EnvelopeReadDetailLogVo;
+import cn.domarvel.vo.envelope.EnvelopeReadDetailLogVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -101,7 +101,7 @@ To change this template use File | Settings | File Templates.
                         </a>
                     </div>
                     <div class="part-inline">
-                        <a class="tag read" href="<c:url value="/"/>bestwish/envelope/read/index">
+                        <a class="tag read" href="<c:url value="/"/>music/musicwarehouse">
                             <span style="line-height: 127px">外链曲库</span>
                         </a>
                     </div>
@@ -173,6 +173,7 @@ To change this template use File | Settings | File Templates.
             },
             uploadFileAction:function() {
                 if($('#fileSource-show')[0].value==""){
+                    vm.modalTipsTitle = "提示";
                     vm.modalUploadErrorMessage = '请选择需要上传的音频文件！';
                     $('#modalButton').click();
                     return;
@@ -193,6 +194,7 @@ To change this template use File | Settings | File Templates.
                         var _data = eval(data);
                         vm.modalTipsTitle = "生成外链成功";
                         annalysData(_data);
+                        $('#fileSource-show')[0].value = "";
                     },
                     error:function(){//请求失败方法
                         alert("系统繁忙,请稍后再试！");
@@ -204,6 +206,7 @@ To change this template use File | Settings | File Templates.
 
     //当上传文件改变时，修改上传文件名称
     $("input[type=file]").change(function(e){
+        vm.modalTipsTitle = "提示";
         $('#fileSource-show')[0].value = "";
         var path = e.target.value;
         var lastIndex = path.lastIndexOf('\\')+1;
@@ -222,7 +225,6 @@ To change this template use File | Settings | File Templates.
     }
 
     function annalysData(_data) {
-
         if(!_data){
             vm.modalMessage = "啊哦~~ 服务器被黑客给击飞了~~~，请稍后再来~";
         }else if(_data.success){

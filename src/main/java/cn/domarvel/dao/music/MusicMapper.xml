@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.domarvel.dao.music.MusicMapper">
+    <select id="findAll" resultType="cn.domarvel.pocustom.music.MusicCustom">
+        SELECT * FROM `music`
+    </select>
+    <insert id="insert">
+        INSERT INTO music(`name`,uploadRemoteIP,uploadTime) VALUES (#{name},#{uploadRemoteIP},#{uploadTime})
+    </insert>
+    <delete id="delete">
+        DELETE FROM music WHERE `name` = #{musicName}
+    </delete>
+</mapper>

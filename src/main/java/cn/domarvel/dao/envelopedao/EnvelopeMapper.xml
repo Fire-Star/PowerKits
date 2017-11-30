@@ -9,7 +9,7 @@
     <select id="countEnvelopeByWishCode" resultType="int">
         SELECT count(wishCode) FROM envelope WHERE wishCode = #{wishCode}
     </select>
-    <select id="findEnvelopeByWishCode" resultType="cn.domarvel.pocustom.EnvelopeCustom">
+    <select id="findEnvelopeByWishCode" resultType="cn.domarvel.pocustom.envelope.EnvelopeCustom">
         SELECT wishCode,receiveMan,envelopeAim,sendMan,dearMan,message,receiveManEmail,sendManEmail FROM envelope WHERE wishCode = #{wishCode}
     </select>
     <select id="findSendManEmailByWishCode" resultType="String">

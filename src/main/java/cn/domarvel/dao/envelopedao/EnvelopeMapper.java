@@ -1,6 +1,6 @@
 package cn.domarvel.dao.envelopedao;
 
-import cn.domarvel.pocustom.EnvelopeCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeCustom;
 
 
 /**

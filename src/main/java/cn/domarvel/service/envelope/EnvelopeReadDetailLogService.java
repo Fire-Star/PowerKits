@@ -1,6 +1,6 @@
 package cn.domarvel.service.envelope;
 
-import cn.domarvel.pocustom.EnvelopeReadDetailLogCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeReadDetailLogCustom;
 
 import java.util.List;
 

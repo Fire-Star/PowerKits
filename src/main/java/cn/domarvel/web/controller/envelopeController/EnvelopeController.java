@@ -1,8 +1,7 @@
 package cn.domarvel.web.controller.envelopeController;
 
 import cn.domarvel.exception.SimpleException;
-import cn.domarvel.pocustom.EnvelopeCustom;
-import cn.domarvel.pocustom.EnvelopeReadLogCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeCustom;
 import cn.domarvel.service.envelope.EnvelopeReadLogService;
 import cn.domarvel.service.envelope.EnvelopeService;
 import cn.domarvel.service.impl.envelope.EnvelopeServiceImpl;

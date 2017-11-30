@@ -1,9 +1,9 @@
 package cn.domarvel.springsecurity.model;
 
-import cn.domarvel.dao.ResMapper;
-import cn.domarvel.dao.ResRoleMapper;
-import cn.domarvel.po.Res;
-import cn.domarvel.po.Role;
+import cn.domarvel.dao.security.ResMapper;
+import cn.domarvel.dao.security.ResRoleMapper;
+import cn.domarvel.po.security.Res;
+import cn.domarvel.po.security.Role;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;

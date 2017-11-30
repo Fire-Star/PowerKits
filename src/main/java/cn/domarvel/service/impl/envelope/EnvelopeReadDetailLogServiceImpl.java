@@ -2,7 +2,7 @@ package cn.domarvel.service.impl.envelope;
 
 import cn.domarvel.dao.envelopedao.EnvelopeReadDetailLogMapper;
 import cn.domarvel.exception.SimpleException;
-import cn.domarvel.pocustom.EnvelopeReadDetailLogCustom;
+import cn.domarvel.pocustom.envelope.EnvelopeReadDetailLogCustom;
 import cn.domarvel.service.envelope.EnvelopeReadDetailLogService;
 import cn.domarvel.utils.BeanPropertyValidateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
