@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>模块选择页面</title>
+    <title>Power Kits 主页</title>
     <!-- 引入 BootStrap 全家桶 -->
     <script src="<c:url value="/"/>res/js/jquery-3.2.1.min.js"></script>
     <script src="<c:url value="/"/>res/js/bootstrap.min.js"></script>
@@ -113,6 +113,10 @@
                     <a class="function-tag part" href="<c:url value="/"/>bestwish/envelope/index">
                         <img style="width: 100%;height: 65%;border: none" src="<c:url value="/"/>res/img/envelope/function2.png">
                         <span style="line-height: 2em;font-size: 1.4em;display: inline-block;">Best Wish To You</span>
+                    </a>
+                    <a class="function-tag part" href="<c:url value="/"/>music/index">
+                        <img style="width: 100%;height: 65%;border: none" src="<c:url value="/"/>res/img/music/solong.png">
+                        <span style="line-height: 2em;font-size: 1.4em;display: inline-block;">CSDN 音乐外链</span>
                     </a>
                 </div>
             </div>

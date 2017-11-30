@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>模块选择页面</title>
+    <!-- 引入 BootStrap 全家桶 -->
+    <script src="../../../res/js/jquery-3.2.1.min.js"></script>
+    <script src="../../../res/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../res/css/bootstrap.min.css"/>
+
+    <!-- 引入Vue.js -->
+    <script src="../../../res/js/vue.min.js"></script>
+    <style>
+        html,body,.app{
+            width: 100%;height: auto;padding: 0px;margin: 0px;
+        }
+        .panel-custom{
+            border: 1px solid #ff4949;width: 55%;margin: 80px auto;
+        }
+        .panel-custom > .panel-heading{
+            background-color: #ff4949;border: 1px solid #ff4949;text-align: center;font: 20px/24px ConduitITCW01-ExtraBold_731262;
+        }
+        .collapse-custom > .well{
+            margin: 0px;border: none;border-radius: 0px;background-color: #fff;
+        }
+        .collapse-custom > .well:hover{
+            background-color: #f5f5f5;
+        }
+        .music-item{
+            border-bottom: none;
+        }
+        .notShow{
+            display: none;
+        }
+        .custom-fade{
+            border: none;
+        }
+        .custom-fade > td{
+            border: none !important;
+        }
+        .part{
+            font: 18px "宋体";
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="panel panel-primary panel-custom">
+        <div class="panel-heading">CSDN 外链曲库</div>
+        <div class="panel-body">
+            <table class="table table-bordered table-condensed table table-hover">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">音乐名称</th>
+                    <th class="text-center">上传时间</th>
+                    <th class="text-center">远程上传IP</th>
+                    <th class="text-center">操作</th>
+
+                </tr>
+                <tr class="text-center music-item">
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">1</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">One Day</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">2017-10-23 9:30:55</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">192.168.0.1</td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-primary btn-sm" style="padding: 5px 25px">删除</button>
+                    </td>
+                </tr>
+                <tr class="custom-fade notShow">
+                    <td colspan="5" style="padding: 0px;">
+                        <button style="display: none;" class="btn btn-primary btn-showIframe" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                        <div class="collapse collapse-custom">
+                            <div class="well well-custom">
+                                sdffffffffaafdsfsdfsdf
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr class="text-center music-item">
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">1</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">One Day</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">2017-10-23 9:30:55</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">192.168.0.1</td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-primary btn-sm" style="padding: 5px 25px">删除</button>
+                    </td>
+                </tr>
+                <tr class="custom-fade notShow">
+                    <td colspan="5" style="padding: 0px;">
+                        <button style="display: none;" class="btn btn-primary btn-showIframe" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                        <div class="collapse collapse-custom">
+                            <div class="well well-custom">
+                                sdffffffffaafdsfsdfsdf
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="text-center music-item">
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">1</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">One Day</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">2017-10-23 9:30:55</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">192.168.0.1</td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-primary btn-sm" style="padding: 5px 25px">删除</button>
+                    </td>
+                </tr>
+                <tr class="custom-fade notShow">
+                    <td colspan="5" style="padding: 0px;">
+                        <button style="display: none;" class="btn btn-primary btn-showIframe" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                        <div class="collapse collapse-custom">
+                            <div class="well well-custom">
+                                sdffffffffaafdsfsdfsdf
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="text-center music-item">
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">1</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">One Day</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">2017-10-23 9:30:55</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">192.168.0.1</td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-primary btn-sm" style="padding: 5px 25px">删除</button>
+                    </td>
+                </tr>
+                <tr class="custom-fade notShow">
+                    <td colspan="5" style="padding: 0px;">
+                        <button style="display: none;" class="btn btn-primary btn-showIframe" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                        <div class="collapse collapse-custom">
+                            <div class="well well-custom">
+                                sdffffffffaafdsfsdfsdf
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="text-center music-item">
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">1</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">One Day</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">2017-10-23 9:30:55</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">192.168.0.1</td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-primary btn-sm" style="padding: 5px 25px">删除</button>
+                    </td>
+                </tr>
+                <tr class="custom-fade notShow">
+                    <td colspan="5" style="padding: 0px;">
+                        <button style="display: none;" class="btn btn-primary btn-showIframe" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                        <div class="collapse collapse-custom">
+                            <div class="well well-custom">
+                                sdffffffffaafdsfsdfsdf
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="text-center music-item">
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">1</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">One Day</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">2017-10-23 9:30:55</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">192.168.0.1</td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-primary btn-sm" style="padding: 5px 25px">删除</button>
+                    </td>
+                </tr>
+                <tr class="custom-fade notShow">
+                    <td colspan="5" style="padding: 0px;">
+                        <button style="display: none;" class="btn btn-primary btn-showIframe" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                        <div class="collapse collapse-custom">
+                            <div class="well well-custom">
+                                sdffffffffaafdsfsdfsdf
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="text-center music-item">
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">1</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">One Day</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">2017-10-23 9:30:55</td>
+                    <td @click="showIframeMessage($event)" style="vertical-align: middle;cursor: pointer;">192.168.0.1</td>
+                    <td style="vertical-align: middle">
+                        <button class="btn btn-primary btn-sm" style="padding: 5px 25px">删除</button>
+                    </td>
+                </tr>
+                <tr class="custom-fade notShow">
+                    <td colspan="5" style="padding: 0px;">
+                        <button style="display: none;" class="btn btn-primary btn-showIframe" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                        <div class="collapse collapse-custom">
+                            <div class="well well-custom">
+                                sdffffffffaafdsfsdfsdf
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="text-center">
+                <span v-if="musicNames.length == 0">还没有上传音乐。。。</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script>
+
+    var data = {
+        musicNames:[],
+        notShowIframe:false,
+        notShowIsRun:false,
+        targetShow:""
+    };
+    var vm = new Vue({
+        el:'.app',
+        data:data,
+        methods:{
+            showIframeMessage:function(event){
+                if(vm.notShowIsRun){
+                    return;
+                }
+                var targetNode = event.target.parentNode.nextSibling.nextSibling;//获取下一个 tr 节点
+                if(vm.targetShow != "" && vm.targetShow != targetNode){
+                    vm.notShowIsRun = true;
+                    setTimeout(function () {
+                        console.log("修改状态！！！");
+                        $(vm.targetShow).toggleClass("notShow");
+                        $(targetNode).toggleClass("notShow");
+                        setTimeout(function () {
+                            $('.btn-showIframe').click();
+                        },10);
+                        vm.targetShow = targetNode;
+                    },360);
+                    setTimeout(function () {
+                        $('.btn-showIframe').click();
+                    },10);
+                    setTimeout(function () {
+                        vm.notShowIsRun = false;
+                    },720);
+                    return;
+                }
+                vm.notShowIsRun = true;
+
+                vm.targetShow = targetNode;
+                if(vm.notShowIframe){
+                    setTimeout(function () {
+                        $(targetNode).toggleClass("notShow");
+                        vm.notShowIframe = !vm.notShowIframe;
+                        vm.targetShow = "";
+                    },300);
+                }else{
+                    $(targetNode).toggleClass("notShow");
+                    vm.notShowIframe = !vm.notShowIframe;
+                }
+                setTimeout(function () {
+                    $('.btn-showIframe').click();
+                },10);
+                setTimeout(function () {
+                    vm.notShowIsRun = false;
+                },400);
+            }
+        }
+    });
+</script>
+</html>
