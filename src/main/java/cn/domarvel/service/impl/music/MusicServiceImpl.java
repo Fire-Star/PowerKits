@@ -85,11 +85,25 @@ public class MusicServiceImpl implements MusicServer{
     }
 
     @Override
-    public void delete(String musicName ,String bathDir) throws Exception {
+    public void delete(String musicName ,String bathDir ,String remoteIP) throws Exception {
         BeanPropertyValidateUtils.validateStrIsEmpty(musicName,"要删除的音乐名称");
+        MusicCustom musicCustom = findByMusicName(musicName);
+        if(musicCustom == null){
+            throw new SimpleException("你要删除的音乐文件不存在！！！");
+        }
+        String uploadRemoteIP = musicCustom.getUploadRemoteIP();
+        if(uploadRemoteIP ==null || !uploadRemoteIP.equals(remoteIP)){
+            throw new SimpleException("对不起，因为该音乐不是你上传的，所以你没有权力删除该音频文件！");
+        }
         musicMapper.delete(musicName);//删除数据库音频日志
         //删除目标音频文件
         File targetMusicFile = new File(bathDir+musicName);
         targetMusicFile.delete();
+    }
+
+    @Override
+    public MusicCustom findByMusicName(String musicName) throws Exception {
+        BeanPropertyValidateUtils.validateStrIsEmpty(musicName,"音频文件名称");
+        return musicMapper.findByMusicName(musicName);
     }
 }

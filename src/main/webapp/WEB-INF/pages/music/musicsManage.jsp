@@ -163,7 +163,7 @@
                     },10);
                     setTimeout(function () {
                         vm.notShowIsRun = false;
-                    },800);
+                    },900);
                     return;
                 }
                 vm.notShowIsRun = true;
@@ -184,7 +184,7 @@
                 },10);
                 setTimeout(function () {
                     vm.notShowIsRun = false;
-                },400);
+                },450);
             },
             annalysData:function(_data) {
                 if(!_data){

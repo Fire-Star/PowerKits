@@ -13,5 +13,7 @@ public interface MusicServer {
 
     public void insert(MusicCustom musicCustom) throws Exception;
 
-    public void delete(String musicName ,String bathDir) throws Exception;
+    public void delete(String musicName ,String bathDir ,String remoteIP) throws Exception;
+
+    public MusicCustom findByMusicName(String musicName) throws Exception;
 }

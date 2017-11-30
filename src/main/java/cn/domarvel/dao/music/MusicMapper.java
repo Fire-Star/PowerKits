@@ -14,4 +14,6 @@ public interface MusicMapper {
     public void insert(MusicCustom musicCustom) throws Exception;
 
     public void delete(String musicName) throws Exception;
+
+    public MusicCustom findByMusicName(String musicName) throws Exception;
 }

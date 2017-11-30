@@ -12,4 +12,7 @@
     <delete id="delete">
         DELETE FROM music WHERE `name` = #{musicName}
     </delete>
+    <select id="findByMusicName" resultType="cn.domarvel.pocustom.music.MusicCustom">
+        SELECT * FROM  music WHERE name = #{musicName}
+    </select>
 </mapper>

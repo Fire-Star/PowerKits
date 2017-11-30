@@ -87,7 +87,8 @@ public class MusicController {
     public void delete(HttpServletRequest request,HttpServletResponse response) throws Exception {
         MusicCustom musicCustom = SimpleBeanUtils.setMapPropertyToBean(MusicCustom.class,request.getParameterMap());
         String name = musicCustom.getName();
-        musicService.delete(name,uploadDir);
+
+        musicService.delete(name,uploadDir , request.getRemoteAddr());
         SimpleException.sendMessage(response,objectMapper,"删除成功！");
     }
 
