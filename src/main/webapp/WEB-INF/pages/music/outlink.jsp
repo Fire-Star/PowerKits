@@ -42,7 +42,7 @@
 </body>
 <script>
     var data = {
-        musicBathUrl:'<c:url value="/"/>res/music/',
+        musicBathUrl:'<c:url value="/res/music/"/>',
         musicName:"",
         musicUrl:""
     };
@@ -53,7 +53,16 @@
     function init() {
         var audio = $("#music")[0];
         vm.musicName = $.query.get("name");
-        vm.musicUrl = vm.musicBathUrl + vm.musicName;
+        var split = vm.musicBathUrl.indexOf(';');
+        var sessionid ="";
+        if(split != -1){
+            sessionid = vm.musicBathUrl.substring(split);
+            vm.musicBathUrl = vm.musicBathUrl.substring(0,split);
+            console.log(sessionid);
+            console.log(vm.musicName);
+            console.log(vm.musicBathUrl);
+        }
+        vm.musicUrl = vm.musicBathUrl + vm.musicName + sessionid;
         audio.src = vm.musicUrl;
         audio.play();
     }
