@@ -13,12 +13,14 @@
     <meta charset="UTF-8">
     <title>信件编辑</title>
     <!-- 引入 BootStrap 全家桶 -->
-    <script src="<c:url value="/"/>res/js/jquery-3.2.1.min.js"></script>
-    <script src="<c:url value="/"/>res/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<c:url value="/"/>res/css/bootstrap.min.css"/>
+    <script src="<c:url value="/res/js/jquery-3.2.1.min.js"/>"></script>
+    <script src="<c:url value="/res/js/Jquery.Query.js"/>"></script>
+    <script src="<c:url value="/res/js/jquery.cookie.js"/>"></script>
+    <script src="<c:url value="/res/js/bootstrap.min.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/res/css/bootstrap.min.css"/>"/>
 
     <!-- 引入Vue.js -->
-    <script src="<c:url value="/"/>res/js/vue.min.js"></script>
+    <script src="<c:url value="/res/js/vue.min.js"/>"></script>
     <style>
         html,body,.app{
             width: 100%;height: 100%;padding: 0px;margin: 0px;background-color: #eae4e2;text-align: center;font: 0 "宋体";
