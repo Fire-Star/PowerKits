@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>LuckMoney-详细操作步骤页面-PowerKits|我的红包五五分</title>
+    <!-- 引入 BootStrap 全家桶 -->
+    <script src="../res/js/jquery-3.2.1.min.js"></script>
+    <script src="../res/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../res/css/bootstrap.min.css"/>
+    <meta name="description" content="10亿红包分享，我的红包五五分" />
+
+    <!-- 引入Vue.js -->
+    <script src="../res/js/vue.min.js"></script>
+    <style>
+        html,body,.app{
+            width: 100%;height: auto;padding: 0px;margin: 0px;background: url("../res/img/luckmoney/luckbg.png");
+        }
+        .part{
+            font: 18px "宋体";
+        }
+        .clearSpace-part{
+            font: 0px/0px "宋体";display: inline-block;;
+        }
+        .middle > img{
+            display: block;width: 980px;
+        }
+        .middle,.middle > img{
+            margin: 80px auto 0 auto;
+        }
+        .bottom{
+            width: 980px;margin: 10px auto;
+        }
+        .bottom{
+            text-align: center;
+        }
+        .intro-box{
+            padding: 15px 60px;border: 1px solid white;background: white;margin-top: 30px;
+        }
+        .bottom .intro-box .bpart{
+            display: inline-block;width: 385px;
+        }
+        .bottom .intro-box .split{
+            display: inline-block;height: 600px;width: 2px;margin: 0 26px;vertical-align: middle;background: #8c8c8c;
+        }
+        .bottom .intro-box .left{
+            vertical-align: middle;
+        }
+        .bottom .intro-box .right img{
+            width: 385px;vertical-align: middle;
+        }
+        .footerx{
+            height: 200px;background: #3c3c3c;margin-top: 30px;color: white;text-align: center;padding: 50px;width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="top">
+
+    </div>
+    <div class="middle">
+        <img src="../res/img/luckmoney/支付宝红包五五分02.png">
+    </div>
+    <div class="bottom">
+        <div class="intro-box clearSpace-part">
+            <div class="bpart left part">
+                <span style="font-size: 21px;">你每次领取红包时，反馈给红包二维码提供者的随机红包笔笔都记得很清楚~~~</span>
+            </div>
+            <span class="split part"></span>
+            <div class="bpart right part">
+                <img src="../res/img/luckmoney/Luck-01.jpg" style="border: 1px solid #8c8c8c;">
+            </div>
+        </div>
+        <div class="intro-box clearSpace-part">
+            <div class="bpart left part">
+                <span style="font-size: 21px;">你每次通过商铺付款码提现的金额，以及是谁转的，我都记得很清楚~~~</span>
+            </div>
+            <span class="split part"></span>
+            <div class="bpart right part">
+                <img src="../res/img/luckmoney/Luck-02.png" style="border: 1px solid #8c8c8c;">
+            </div>
+        </div>
+    </div>
+    <footer class="footerx">
+        <p>Power By FireLang</p>
+        <p>一名现役单身大学生的呼唤</p>
+    </footer>
+</div>
+</body>
+<script>
+    var data = {
+    };
+    var vm = new Vue({
+        el:'.app',
+        data:data
+    });
+</script>
+</html>

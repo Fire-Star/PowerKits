@@ -12,7 +12,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OutLink</title>
     <!-- 引入 BootStrap 全家桶 -->
     <script src="<c:url value="/res/js/jquery-3.2.1.min.js"/>"></script>
     <script src="<c:url value="/res/js/Jquery.Query.js"/>"></script>
@@ -58,9 +57,6 @@
         if(split != -1){
             sessionid = vm.musicBathUrl.substring(split);
             vm.musicBathUrl = vm.musicBathUrl.substring(0,split);
-            console.log(sessionid);
-            console.log(vm.musicName);
-            console.log(vm.musicBathUrl);
         }
         vm.musicUrl = vm.musicBathUrl + vm.musicName + sessionid;
         audio.src = vm.musicUrl;
