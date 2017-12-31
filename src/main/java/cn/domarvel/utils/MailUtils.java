@@ -8,16 +8,16 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
+import sun.misc.BASE64Encoder;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.security.Security;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Create by MoonFollow (or named FireLang)
@@ -69,7 +69,7 @@ public class MailUtils {
                 msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiveMan));//设置收件人
             }
 
-            msg.setSubject(subject);
+            msg.setSubject(subject,"UTF-8");
             msg.setContent(message, "text/html;charset=utf-8");
             msg.setSentDate(new Date());
         /*
@@ -80,20 +80,6 @@ public class MailUtils {
         }catch (MessagingException e){
             e.printStackTrace();
             throw new SimpleException("邮件发送失败！");
-        }
-    }
-    public static void main(String[] args) throws IOException {
-        int count = 30000;
-        try {
-            while (count-- > 0){
-                HttpClient client = HttpClientBuilder.create().build();
-                HttpGet httpGet = new HttpGet("http://blog.csdn.net/marvel__dead");
-                HttpEntity entity = client.execute(httpGet).getEntity();
-                System.out.println(count);
-                Thread.sleep(2000);
-            }
-        }catch (Exception e){
-            System.out.println("被服务器防火墙暂时断开了访问！！！");
         }
     }
 }
