@@ -1,6 +1,5 @@
 package cn.domarvel.web.controller.encodeController;
 
-import cn.domarvel.utils.RSAUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +16,7 @@ public class RSAController {
 
     @RequestMapping("/encode/jsonpublicrsakey")
     public @ResponseBody String getPublicRsaKey(){
-        String publicKey = RSAUtils.getJsonRSAPublicKey();
-        return publicKey;
+       // String publicKey = RSAUtils.getJsonRSAPublicKey();
+        return null;
     }
 }

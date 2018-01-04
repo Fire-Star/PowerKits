@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.domarvel.dao.user.UserxMapper">
+    <insert id="insert">
+        INSERT INTO rsa_user(username,password,initSalt) VALUES(#{username},#{password},#{initSalt})
+    </insert>
+    <select id="findUserCountByUserName" resultType="int">
+        SELECT count(username) FROM rsa_user WHERE username=#{username}
+    </select>
+    <select id="findUserInitSaltByUserName" resultType="String">
+        SELECT initSalt FROM rsa_user WHERE username=#{username}
+    </select>
+    <select id="findUserByUsername" resultType="cn.domarvel.pocustom.user.UserCustomx">
+        SELECT * FROM rsa_user WHERE username=#{username}
+    </select>
+</mapper>

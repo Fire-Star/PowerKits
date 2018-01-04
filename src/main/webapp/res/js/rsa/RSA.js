@@ -18,6 +18,7 @@ function RSAKeyPair(encryptionExponent, decryptionExponent, modulus)
 	this.e = biFromHex(encryptionExponent);
 	this.d = biFromHex(decryptionExponent);
 	this.m = biFromHex(modulus);
+	console.log(this.m);
 	// We can do two bytes per digit, so
 	// chunkSize = 2 * (number of digits in modulus - 1).
 	// Since biHighIndex returns the high index, not the number of digits, 1 has
